@@ -143,9 +143,9 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 # Стандартная модель пользователя
 AUTH_USER_MODEL = "users.User"
 
-#
-# LOGIN_URL = "#"
+# Именованный адрес для авторизации
+LOGIN_URL = "users:login"
 # Именованный адрес на который следует перенаправлять пользователя после успешной авторизации
-# LOGIN_REDIRECT_URL = "#"
+LOGIN_REDIRECT_URL = "users:home"
 # Именованный адрес на который перенаправляется пользователь после выхода
-# LOGOUT_REDIRECT_URL = "#"
+LOGOUT_REDIRECT_URL = "users:home"
