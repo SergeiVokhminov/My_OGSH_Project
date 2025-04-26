@@ -39,12 +39,12 @@
     </div>
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
-           href="#" role="button">Личный кабинет
+           href="{% url 'users:user_detail' user.pk %}" role="button">Личный кабинет
         </a>
     </div>
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
-           href="#" role="button">Тестовая страница
+           href="{% url 'users:test' user.pk %}" role="button">Тестовая страница
         </a>
     </div>
     <div class="col">
