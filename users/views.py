@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.views.generic import TemplateView
 
-# Create your views here.
+from users.models import User
+
+
+class HomeView(TemplateView):
+    """Контроллер представления главной страницы."""
+
+    template_name = "users/home.html"
