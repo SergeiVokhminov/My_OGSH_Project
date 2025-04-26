@@ -141,7 +141,7 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 # SERVER_EMAIL = EMAIL_HOST_USER
 
 # Стандартная модель пользователя
-# AUTH_USER_MODEL = "users.User"
+AUTH_USER_MODEL = "users.User"
 
 #
 # LOGIN_URL = "#"
