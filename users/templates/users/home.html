@@ -7,7 +7,7 @@
         {% if user.is_superuser %}
             <h1 class="fw-light">Привет, {{ user.first_name | default:user.email }}!</h1>
             <h1 class="fw-light">Проверь задачи сотрудников.</h1>
-            <a href="{% url 'tasks:task_create' %}" class="btn btn-primary my-2">Добавить задачу</a>
+            <a href="#" class="btn btn-primary my-2">Добавить задачу</a>
             <a href="#" class="btn btn-secondary my-2">Активные задачи</a>
         {% elif user.is_authenticated %}
             <h1 class="fw-light">Привет, {{ user.first_name | default:user.email }}</h1>
@@ -39,21 +39,16 @@
     </div>
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
-           href="#" role="button">Информация о рассылках
-        </a>
-    </div>
-    <div class="col">
-        <a class="btn btn-success w-100" style="text-align: center"
            href="#" role="button">Личный кабинет
         </a>
     </div>
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'users:test' %}" role="button">Тестовая страница
+           href="#" role="button">Тестовая страница
         </a>
     </div>
     <div class="col">
-        <form method="post" action="#">
+        <form method="post" action="{% url 'users:logout' %}">
             {% csrf_token %}
             <button type="submit" class="btn btn-success w-100" style="text-align: center" role="button">Выход
             </button>
@@ -62,12 +57,12 @@
     {% else %}
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
-           href="#" role="button">Вход на сайт
+           href="{% url 'users:login' %}" role="button">Вход на сайт
         </a>
     </div>
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
-           href="#" role="button">Зарегистрироваться на сайте
+           href="{% url 'users:register' %}" role="button">Зарегистрироваться на сайте
         </a>
     </div>
     {% endif %}
