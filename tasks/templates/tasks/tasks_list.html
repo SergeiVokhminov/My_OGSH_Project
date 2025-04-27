@@ -1,0 +1,62 @@
+{% extends 'users/base.html' %}
+{% load my_tags %}
+{% block title %}Список задач{% endblock %}
+{% block content %}
+<section class="py-5 text-center container">
+    <div class="row">
+        <h2 class="mt-2 text-center">Список задач</h2>
+    </div>
+</section>
+<section class="py-5 text-center container">
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 text-center">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">Название задачи</th>
+                    <th scope="col">Исполнитель</th>
+                    <th scope="col">Срок исполнения</th>
+                    <th scope="col">Статус</th>
+                    <th scope="col">Детали</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for task in object_list %}
+                <tr>
+                    <th scope="row">{{ task.id }}</th>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.employee | truncatechars:200 }}</td>
+                    <td>{{ task.deadline }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>
+                        <a class="link" href="{% url 'tasks:task_detail' task.pk %}">
+                            Подробнее
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">Нет задач для отображения.</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="col">
+                <div class="card shadow-sm">
+                    <a class="btn btn-primary" href="{% url 'users:home' %}" role="button">На главную</a>
+                </div>
+            </div>
+            {% if user.is_superuser %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <a class="btn btn-primary" href="{% url 'tasks:task_create' %}" role="button">Добавить задачу</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %}
