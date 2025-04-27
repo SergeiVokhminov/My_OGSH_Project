@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "users",
+    "tasks",
 ]
 
 # Список промежуточного ПО, которое обрабатывает входящие запросы и выходящие ответы.
