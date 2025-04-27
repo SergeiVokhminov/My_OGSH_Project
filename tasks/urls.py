@@ -17,9 +17,4 @@ urlpatterns = [
     path("detail/<int:pk>/", TaskDetailsView.as_view(), name="task_detail"),
     path("update/<int:pk>/", TaskUpdateView.as_view(), name="task_update"),
     path("delete/<int:pk>/", TasksDeleteView.as_view(), name="task_delete"),
-    # path(
-    #     "important/",
-    #     ImportantTasksView.as_view({"get": "important_tasks"}),
-    #     name="task_important",
-    # ),
 ]
