@@ -53,8 +53,12 @@
         </div>
     </header>
 
-    {% block content %} <!-- Блок для динамической вставки контента. -->
-    {% endblock %}
+    <div class="container">
+        <main>
+            {% block content %} <!-- Блок для динамической вставки контента. -->
+            {% endblock %}
+        </main>
+    </div>
 
     <!-- FOOTER SECTION (если необходимо) -->
     <!-- <footer class="py-5 container"> Подвал страницы, можно добавить дополнительный контент. -->

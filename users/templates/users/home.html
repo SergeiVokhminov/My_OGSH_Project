@@ -3,20 +3,18 @@
 {% block title %}Главная страница{% endblock %}
 {% block content %}
 <section class="py-5 text-center container">
-<!--    <div class="col-lg-6 col-md-8 mx-auto">-->
-        {% if user.is_superuser %}
-            <h1 class="fw-light">Привет, {{ user.first_name | default:user.email }}!</h1>
-            <h1 class="fw-light">Проверь задачи сотрудников.</h1>
-            <a href="#" class="btn btn-primary my-2">Добавить задачу</a>
-            <a href="#" class="btn btn-secondary my-2">Активные задачи</a>
-        {% elif user.is_authenticated %}
-            <h1 class="fw-light">Привет, {{ user.first_name | default:user.email }}</h1>
-            <h1 class="fw-light">Проверь свои задачи.</h1>
-        {% else %}
-            <h1 class="display-6">Сервис управления задачами сотрудников</h1>
-            <p class="lead">С.У.З.С. - это отличный вариант управлять задачами сотрудников.</p>
-        {% endif %}
-<!--    </div>-->
+    {% if user.is_superuser %}
+        <h1 class="fw-light">Привет, {{ user.first_name | default:user.email }}!</h1>
+        <h1 class="fw-light">Проверь задачи сотрудников.</h1>
+        <a href="#" class="btn btn-primary my-2">Добавить задачу</a>
+        <a href="#" class="btn btn-secondary my-2">Активные задачи</a>
+    {% elif user.is_authenticated %}
+        <h1 class="fw-light">Привет, {{ user.first_name | default:user.email }}</h1>
+        <h1 class="fw-light">Проверь свои задачи.</h1>
+    {% else %}
+        <h1 class="display-6">Сервис управления задачами сотрудников</h1>
+        <p class="lead">С.У.З.С. - это отличный вариант управлять задачами сотрудников.</p>
+    {% endif %}
 </section>
 <section class="py-5 text-center container">
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 text-center"> <!--  -->
@@ -29,22 +27,17 @@
     <div class="col">
         {% if user.is_superuser %}
         <a class="btn btn-success w-100" style="text-align: center"
-           href="#" role="button">Информация о сотрудниках
+           href="{% url 'users:user_list' %}" role="button">Информация о сотрудниках
         </a>
         {% else %}
         <a class="btn btn-success w-100" style="text-align: center"
-           href="#" role="button">Список сотрудников
+           href="{% url 'users:user_list' %}" role="button">Список сотрудников
         </a>
         {% endif %}
     </div>
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'users:user_detail' user.pk %}" role="button">Личный кабинет
-        </a>
-    </div>
-    <div class="col">
-        <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'users:test' user.pk %}" role="button">Тестовая страница
+           href="{% url 'users:user_info' user.pk %}" role="button">Личный кабинет
         </a>
     </div>
     <div class="col">
