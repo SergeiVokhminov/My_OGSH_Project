@@ -1,10 +1,9 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh; /* Высота 100% от окна браузера */
-    background-image: url("/static/images/штаб.jpg");
-    background-size: cover; /* Чтобы изображение покрывало весь экран */
-    background-position: center; /* Центрируем изображение */
+    background-image: url("/static/images/штаб.jpg"); /* Замените на имя вашего изображения */
+    background-size: cover; /* Чтобы изображение занимало весь экран */
+    background-position: center; /* Центрирование изображения */
     background-attachment: fixed;
     color: black; /* Цвет текста (для контраста) */
 }
