@@ -1,0 +1,40 @@
+{% extends 'users/base.html' %}
+{% load my_tags %}
+{% block title %}Мой профиль{% endblock %}
+{% block content %}
+<section class="py-5 container">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="col-md-6 col-lg-9">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <img src="{{ object.avatar | media_filter }}" width="100%" height="250">
+                            <h4 class="my-0 font-weight-normal mt-3">Электронная почта: {{ object.email }}</h4>
+                            <h4 class="my-0 font-weight-normal mt-3">Фамилия: {{ object.last_name }}</h4>
+                            <h4 class="my-0 font-weight-normal mt-3">Имя: {{ object.first_name }}</h4>
+                            <h4 class="my-0 font-weight-normal mt-3">Отчество: {{ object.patronymic }}</h4>
+                            <h4 class="my-0 font-weight-normal mt-3">Должность: {{ object.position }}</h4>
+                            <div class="col text-centre">
+                                <a href="{% url 'users:user_update' user.pk %}" class="btn btn-primary my-2">Редактировать</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="col-md-6 col-lg-12">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="my-0 font-weight-normal mt-3">Список активных задач:</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-5 text-center container">
+    <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">На главную</a>
+</section>
+{% endblock %}
