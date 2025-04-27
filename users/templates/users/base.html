@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Делает страницу адаптивной для мобильных и десктопных устройств. -->
     <title>{% block title %}{% endblock %}</title> <!-- Заголовок страницы, динамически заменяемый содержимым блока title. -->
     <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" /> <!-- Подключаем статические файлы со стилями Bootstrap -->
+    <link href="{% static '/css/styles_new_test.css' %}" rel="stylesheet" /> <!-- Подключаем свой статический файл со стилями -->
 </head>
 
 <body> <!-- Начало тела страницы -->
@@ -52,12 +53,12 @@
         </div>
     </header>
 
-{% block content %} <!-- Блок для динамической вставки контента. -->
-{% endblock %}
+    {% block content %} <!-- Блок для динамической вставки контента. -->
+    {% endblock %}
 
-<!-- FOOTER SECTION (если необходимо) -->
-<!-- <footer class="py-5 container"> Подвал страницы, можно добавить дополнительный контент. -->
-<!-- </footer>-->
+    <!-- FOOTER SECTION (если необходимо) -->
+    <!-- <footer class="py-5 container"> Подвал страницы, можно добавить дополнительный контент. -->
+    <!-- </footer>-->
 
     <!-- SCRIPT SECTION -->
     <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script> <!-- Подключение JS скриптов Bootstrap (с включённым Popper). -->
