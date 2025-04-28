@@ -4,15 +4,15 @@ from tasks.models import Task
 from users.models import User
 
 
-class TaskForm(forms.ModelForm):
+class TaskUpdateForm(forms.ModelForm):
     """Форма для задачи."""
 
     class Meta:
         model = Task
-        fields = "__all__"
+        fields = ("title", "description", "parent_task", "employee", "status", "deadline",)
 
     def __init__(self, *args, **kwargs):
-        super(TaskForm, self).__init__(*args, **kwargs)
+        super(TaskUpdateForm, self).__init__(*args, **kwargs)
         self.fields["employee"].queryset = User.objects.exclude(is_superuser=True)
         self.fields["title"].widget.attrs.update(
             {"class": "form-control", "placeholder": "Введите название задачи"}
@@ -31,7 +31,4 @@ class TaskForm(forms.ModelForm):
         )
         self.fields["deadline"].widget.attrs.update(
             {"class": "form-control", "placeholder": "Введите срок исполнения"}
-        )
-        self.fields["owner"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Создатель задачи"}
         )
