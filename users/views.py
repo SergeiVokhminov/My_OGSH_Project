@@ -1,7 +1,8 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, DetailView, UpdateView, ListView, DeleteView
 
+from tasks.models import Task
 from users.forms import UserRegisterForm, UserUpdateForm, UserForm
 from users.models import User
 
@@ -13,6 +14,12 @@ class UserInfoView(UpdateView):
     form_class = UserForm
     template_name = "users/user_info.html"
     success_url = reverse_lazy("users:home")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["task_count"] = Task.objects.count() # Считаем количество пользователей
+
+        return context
 
 
 class HomeView(TemplateView):
@@ -35,6 +42,12 @@ class UserListView(ListView):
 
     model = User
     template_name = "users/user_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["user_count"] = User.objects.count() # Считаем количество пользователей
+
+        return context
 
 
 class UserDetailsView(DetailView):
