@@ -2,61 +2,82 @@
 {% load my_tags %}
 {% block title %}Список задач{% endblock %}
 {% block content %}
-<section class="py-5 text-center container">
-    <div class="row">
-        <h2 class="mt-2 text-center">Список задач</h2>
-    </div>
-</section>
-<section class="py-5 text-center container">
-<div class="album py-5 bg-body-tertiary">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 text-center">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th scope="col">№</th>
-                    <th scope="col">Название задачи</th>
-                    <th scope="col">Исполнитель</th>
-                    <th scope="col">Срок исполнения</th>
-                    <th scope="col">Статус</th>
-                    <th scope="col">Детали</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for task in object_list %}
-                <tr>
-                    <th scope="row">{{ task.id }}</th>
-                    <td>{{ task.title }}</td>
-                    <td>{{ task.employee | truncatechars:200 }}</td>
-                    <td>{{ task.deadline }}</td>
-                    <td>{{ task.status }}</td>
-                    <td>
-                        <a class="link" href="{% url 'tasks:task_detail' task.pk %}">
-                            Подробнее
-                        </a>
-                    </td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="4" class="text-center">Нет задач для отображения.</td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <div class="col">
-                <div class="card shadow-sm">
-                    <a class="btn btn-primary" href="{% url 'users:home' %}" role="button">На главную</a>
+<section class="py-5 container">
+<div class="row g-5">
+
+    <div class="col-md-5 col-lg-4 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Краткая информация</span>
+        </h4>
+
+        <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">Количество задач:</h6>
                 </div>
-            </div>
-            {% if user.is_superuser %}
-            <div class="col">
-                <div class="card shadow-sm">
-                    <a class="btn btn-primary" href="{% url 'tasks:task_create' %}" role="button">Добавить задачу</a>
+                <span class="text-body-secondary">{{ task_count }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">В работе:</h6>
                 </div>
-            </div>
-            {% endif %}
-        </div>
+                <span class="text-body-secondary">{{ 5 }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">Завершено:</h6>
+                </div>
+                <span class="text-body-secondary">6</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                <div class="text-success">
+                    <h6 class="my-0">Отменено:</h6>
+                </div>
+                <span class="text-success">4</span>
+            </li>
+        </ul>
     </div>
+
+    <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Список задач</h4>
+
+        {% for task in object_list %}
+            <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">Название:</h6>
+                </div>
+                <span class="text-body-secondary">{{ task.title }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">Исполнитель:</h6>
+                </div>
+                <span class="text-body-secondary">{{ task.employee }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">Строк исполнения:</h6>
+                </div>
+                <span class="text-body-secondary">{{ task.deadline }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                <div class="text-success">
+                    <h6 class="my-0">Создатель:</h6>
+                </div>
+                <span class="text-success">{{ task.owner }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                <div class="text-success">
+                    <h6 class="my-0">Подробнее:</h6>
+                </div>
+                <a class="link" href="{% url 'tasks:task_detail' user.pk %}">Посмотреть</a>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+
 </div>
+
 </section>
 {% endblock %}

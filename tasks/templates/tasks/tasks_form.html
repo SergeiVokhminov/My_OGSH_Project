@@ -21,6 +21,7 @@
                 {% endfor %}
             </div>
         {% endfor %}
+        <section class="py-5 text-center container">
         <button class="btn btn-primary" type="submit">
             {% if task %}
                 Сохранить
@@ -30,6 +31,7 @@
         </button>
         <a class="btn btn-secondary" href="{% url 'tasks:task_list' %}">Отмена</a>
         <a class="btn btn-secondary" href="{% url 'users:home' %}">На главную</a>
+        </section>
     </form>
 </div>
 {% endblock %}
