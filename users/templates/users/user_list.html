@@ -2,5 +2,83 @@
 {% load my_tags %}
 {% block title %}Список о сотрудниках{% endblock %}
 {% block content %}
+<section class="py-5 container">
+<div class="row g-5">
+
+    <div class="col-md-5 col-lg-4 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Краткая информация</span>
+        </h4>
+
+        <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">Количество сотрудников:</h6>
+                </div>
+                <span class="text-body-secondary">{{ user_count }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">На работе</h6>
+                </div>
+                <span class="text-body-secondary">48</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">В отпуске</h6>
+                </div>
+                <span class="text-body-secondary">5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                <div class="text-success">
+                    <h6 class="my-0">На больничном</h6>
+                </div>
+                <span class="text-success">5</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Список сотрудников</h4>
+
+        {% for user in object_list %}
+            <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">Фамилия:</h6>
+                </div>
+                <span class="text-body-secondary">{{ user.last_name }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">Имя:</h6>
+                </div>
+                <span class="text-body-secondary">{{ user.first_name }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">Должность:</h6>
+                </div>
+                <span class="text-body-secondary">{{ user.position }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                <div class="text-success">
+                    <h6 class="my-0">Последний вход:</h6>
+                </div>
+                <span class="text-success">{{ user.last_login }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                <div class="text-success">
+                    <h6 class="my-0">Подробнее:</h6>
+                </div>
+                <a class="link" href="{% url 'users:user_detail' user.pk %}">Посмотреть</a>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+
+</div>
+
+</section>
 
 {% endblock %}
