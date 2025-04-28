@@ -36,11 +36,13 @@ class Task(models.Model):
         null=True,
         blank=True,
     )
-    employee = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
+    employee = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
         related_name="tasks",
         verbose_name="Исполнители",
         blank=True,
+        null=True,
     )
     status = models.CharField(
         choices=STATUS_CHOICES,
@@ -63,7 +65,7 @@ class Task(models.Model):
         default=False, verbose_name="Признак связанной задачи"
     )
     owner = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         verbose_name="Владелец задачи",
         null=True,
