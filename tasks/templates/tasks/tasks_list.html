@@ -21,19 +21,19 @@
                 <div>
                     <h6 class="my-0">В работе:</h6>
                 </div>
-                <span class="text-body-secondary">{{ 5 }}</span>
+                <span class="text-body-secondary"></span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
                     <h6 class="my-0">Завершено:</h6>
                 </div>
-                <span class="text-body-secondary">6</span>
+                <span class="text-body-secondary"></span>
             </li>
             <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                 <div class="text-success">
                     <h6 class="my-0">Отменено:</h6>
                 </div>
-                <span class="text-success">4</span>
+                <span class="text-success"></span>
             </li>
         </ul>
     </div>
@@ -79,5 +79,9 @@
 
 </div>
 
+</section>
+
+<section class="py-5 text-center container">
+    <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">На главную</a>
 </section>
 {% endblock %}
