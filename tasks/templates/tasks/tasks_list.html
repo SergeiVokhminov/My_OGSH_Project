@@ -21,19 +21,19 @@
                 <div>
                     <h6 class="my-0">В работе:</h6>
                 </div>
-                <span class="text-body-secondary"></span>
+                <span class="text-body-secondary">{{ start_task_count }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
                     <h6 class="my-0">Завершено:</h6>
                 </div>
-                <span class="text-body-secondary"></span>
+                <span class="text-body-secondary">{{ done_task_count }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                 <div class="text-success">
                     <h6 class="my-0">Отменено:</h6>
                 </div>
-                <span class="text-success"></span>
+                <span class="text-success">{{ closed_task_count }}</span>
             </li>
         </ul>
     </div>
@@ -61,6 +61,12 @@
                 </div>
                 <span class="text-body-secondary">{{ task.deadline }}</span>
             </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0">Статус:</h6>
+                </div>
+                <span class="text-body-secondary">{{ task.status }}</span>
+            </li>
             <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                 <div class="text-success">
                     <h6 class="my-0">Создатель:</h6>
@@ -71,17 +77,17 @@
                 <div class="text-success">
                     <h6 class="my-0">Подробнее:</h6>
                 </div>
-                <a class="link" href="{% url 'tasks:task_detail' user.pk %}">Посмотреть</a>
+                <a class="link" href="{% url 'tasks:task_detail' task.pk %}">Посмотреть</a>
             </li>
         </ul>
         {% endfor %}
     </div>
-
 </div>
-
-</section>
 
 <section class="py-5 text-center container">
     <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">На главную</a>
 </section>
+
+</section>
+
 {% endblock %}
