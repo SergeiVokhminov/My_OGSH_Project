@@ -17,7 +17,11 @@ class UserInfoView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["task_count"] = Task.objects.count()  # Считаем количество пользователей
+        context["task_count"] = Task.objects.count()  # Считаем количество задач
+        context["start_task_count"] = Task.objects.filter(status="start").count()
+        context["free_task_count"] = Task.objects.filter(status="free").count()
+        context["done_task_count"] = Task.objects.filter(status="done").count()
+        context["closed_task_count"] = Task.objects.filter(status="closed").count()
 
         return context
 
