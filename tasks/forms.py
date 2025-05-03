@@ -9,7 +9,14 @@ class TaskUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ("title", "description", "parent_task", "employee", "status", "deadline",)
+        fields = (
+            "title",
+            "description",
+            "parent_task",
+            "employee",
+            "status",
+            "deadline",
+        )
 
     def __init__(self, *args, **kwargs):
         super(TaskUpdateForm, self).__init__(*args, **kwargs)
