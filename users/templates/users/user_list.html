@@ -75,6 +75,12 @@
             </li>
             <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                 <div class="text-success">
+                    <h6 class="my-0">Статус сотрудника:</h6>
+                </div>
+                <span class="text-success">{{ user.get_condition_display }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                <div class="text-success">
                     <h6 class="my-0">Подробнее:</h6>
                 </div>
                 <a class="link" href="{% url 'users:user_detail' user.pk %}">Посмотреть</a>
