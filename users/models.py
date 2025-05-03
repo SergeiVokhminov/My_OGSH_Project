@@ -5,6 +5,18 @@ from django.db import models
 class User(AbstractUser):
     """Поля для модели пользователя."""
 
+    at_work = "work"
+    on_vacation = "vacation"
+    on_sick_leave = "sick_leave"
+    truancy = "truancy"
+
+    CONDITION_CHOICES = [
+        (at_work, "На работе"),
+        (on_vacation, "В отпуске"),
+        (on_sick_leave, "На больничном"),
+        (truancy, "Прогул")
+    ]
+
     username = None
     email = models.EmailField(unique=True, verbose_name="Электронная почта")
     first_name = models.CharField(
@@ -21,6 +33,13 @@ class User(AbstractUser):
     )
     position = models.CharField(
         max_length=100, verbose_name="Должность", blank=True, null=True
+    )
+    condition = models.CharField(
+       choices=CONDITION_CHOICES,
+       verbose_name="Статус сотрудника",
+       default="truancy",
+       null=True,
+       blank=True,
     )
     address = models.CharField(
         max_length=255, verbose_name="Адрес", blank=True, null=True

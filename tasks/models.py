@@ -41,6 +41,7 @@ class Task(models.Model):
         on_delete=models.SET_NULL,
         related_name="tasks",
         verbose_name="Исполнители",
+        default="Не выбран",
         blank=True,
         null=True,
     )
