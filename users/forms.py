@@ -63,6 +63,7 @@ class UserUpdateForm(forms.ModelForm):
             "patronymic",
             "position",
             "phone_number",
+            "condition",
             "address",
             "avatar",
         )
@@ -89,6 +90,9 @@ class UserUpdateForm(forms.ModelForm):
                 "class": "form-control",
                 "placeholder": "Введите номер телефона (только цифры)",
             }
+        )
+        self.fields["condition"].widget.attrs.update(
+            {"class": "form-control", "placeholder": "Выберите статус сотрудника"}
         )
         self.fields["address"].widget.attrs.update(
             {"class": "form-control", "placeholder": "Введите адрес регистрации"}
