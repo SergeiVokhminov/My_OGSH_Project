@@ -21,19 +21,25 @@
                 <div>
                     <h6 class="my-0">На работе</h6>
                 </div>
-                <span class="text-body-secondary"></span>
+                <span class="text-body-secondary">{{ user_at_work_count }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
                     <h6 class="my-0">В отпуске</h6>
                 </div>
-                <span class="text-body-secondary"></span>
+                <span class="text-body-secondary">{{ user_on_vacation_count }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                 <div class="text-success">
                     <h6 class="my-0">На больничном</h6>
                 </div>
-                <span class="text-success"></span>
+                <span class="text-success">{{ user_on_sick_leave_count }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                <div class="text-success">
+                    <h6 class="my-0">Прогул</h6>
+                </div>
+                <span class="text-success">{{ user_truancy_count }}</span>
             </li>
         </ul>
     </div>
