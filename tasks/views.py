@@ -46,10 +46,14 @@ class TaskListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["task_count"] = Task.objects.count()  # Считаем общее количество созданных задач
-        context["start_task_count"] = Task.objects.filter(status="start").count()  # Считаем количество задач "К исполнению"
+        context["start_task_count"] = Task.objects.filter(
+            status="start"
+        ).count()  # Считаем количество задач "К исполнению"
         context["free_task_count"] = Task.objects.filter(status="free").count()  # Считаем количество задач "Свободна"
         context["done_task_count"] = Task.objects.filter(status="done").count()  # Считаем количество задач "Завершена"
-        context["closed_task_count"] = Task.objects.filter(status="closed").count()  # Считаем количество задач "Отменена"
+        context["closed_task_count"] = Task.objects.filter(
+            status="closed"
+        ).count()  # Считаем количество задач "Отменена"
 
         return context
 
