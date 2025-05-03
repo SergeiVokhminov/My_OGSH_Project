@@ -1,9 +1,16 @@
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, DetailView, UpdateView, ListView, DeleteView
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    TemplateView,
+    UpdateView,
+)
 
 from tasks.models import Task
-from users.forms import UserRegisterForm, UserUpdateForm, UserForm
+from users.forms import UserForm, UserRegisterForm, UserUpdateForm
 from users.models import User
 
 
@@ -18,10 +25,14 @@ class UserInfoView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["task_count"] = Task.objects.count()  # Считаем количество задач
-        context["start_task_count"] = Task.objects.filter(status="start").count()
-        context["free_task_count"] = Task.objects.filter(status="free").count()
-        context["done_task_count"] = Task.objects.filter(status="done").count()
-        context["closed_task_count"] = Task.objects.filter(status="closed").count()
+        context["start_task_count"] = Task.objects.filter(
+            status="start"
+        ).count()  # Считаем количество задач "К исполнению"
+        context["free_task_count"] = Task.objects.filter(status="free").count()  # Считаем количество задач "Свободна"
+        context["done_task_count"] = Task.objects.filter(status="done").count()  # Считаем количество задач "Завершена"
+        context["closed_task_count"] = Task.objects.filter(
+            status="closed"
+        ).count()  # Считаем количество задач "Отменена"
 
         return context
 
@@ -49,11 +60,19 @@ class UserListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["user_count"] = User.objects.count() # Считаем количество пользователей
-        context["user_at_work_count"] = User.objects.filter(condition="work").count()
-        context["user_on_vacation_count"] = User.objects.filter(condition="vacation").count()
-        context["user_on_sick_leave_count"] = User.objects.filter(condition="sick_leave").count()
-        context["user_truancy_count"] = User.objects.filter(condition="truancy").count()
+        context["user_count"] = User.objects.count()  # Считаем количество пользователей
+        context["user_at_work_count"] = User.objects.filter(
+            condition="work"
+        ).count()  # Считаем количество пользователей "На работе"
+        context["user_on_vacation_count"] = User.objects.filter(
+            condition="vacation"
+        ).count()  # Считаем количество пользователей "В отпуске"
+        context["user_on_sick_leave_count"] = User.objects.filter(
+            condition="sick_leave"
+        ).count()  # Считаем количество пользователей "На больничном"
+        context["user_truancy_count"] = User.objects.filter(
+            condition="truancy"
+        ).count()  # Считаем количество пользователей "Прогул"
 
         return context
 
@@ -80,9 +99,7 @@ class UserDeleteView(DeleteView):
 
     model = User
     template_name = "users/user_confirm_delete.html"
-    success_url = reverse_lazy(
-        "users:home"
-    )
+    success_url = reverse_lazy("users:home")
 
     def test_func(self):
         return (
