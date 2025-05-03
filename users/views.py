@@ -50,6 +50,10 @@ class UserListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["user_count"] = User.objects.count() # Считаем количество пользователей
+        context["user_at_work_count"] = User.objects.filter(condition="work").count()
+        context["user_on_vacation_count"] = User.objects.filter(condition="vacation").count()
+        context["user_on_sick_leave_count"] = User.objects.filter(condition="sick_leave").count()
+        context["user_truancy_count"] = User.objects.filter(condition="truancy").count()
 
         return context
 
