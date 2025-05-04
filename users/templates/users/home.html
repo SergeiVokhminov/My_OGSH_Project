@@ -64,6 +64,16 @@
     </div>
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
+           href="{% url 'mailing:recipient_info' %}" role="button">Список рассылок
+        </a>
+    </div>
+    <div class="col">
+        <a class="btn btn-success w-100" style="text-align: center"
+           href="{% url 'mailing:message_info' %}" role="button">Список сообщений
+        </a>
+    </div>
+    <div class="col">
+        <a class="btn btn-success w-100" style="text-align: center"
            href="{% url 'admin:index' %}" role="button">Войти в административную часть сайта
         </a>
     </div>
