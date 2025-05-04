@@ -5,7 +5,7 @@
 <section class="py-5 container">
 <div class="row g-5">
 
-    <div class="col-md-5 col-lg-4 order-md-last">
+    <div class="col-md-5 col-lg-6 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-primary">Краткая информация</span>
         </h4>
@@ -15,36 +15,40 @@
                 <div>
                     <h6 class="my-0">Количество задач:</h6>
                 </div>
-                <span class="text-body-secondary">{{ task_count }}</span>
+                <span class="text-body-secondary-center">{{ task_count }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
                     <h6 class="my-0">Свободных:</h6>
                 </div>
-                <span class="text-body-secondary">{{ free_task_count }}</span>
+                <span class="text-body-secondary-center">{{ free_task_count }}</span>
+                <a class="link" href="#">Посмотреть</a>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
                     <h6 class="my-0">В работе:</h6>
                 </div>
-                <span class="text-body-secondary">{{ start_task_count }}</span>
+                <span class="text-body-secondary-center">{{ start_task_count }}</span>
+                <a class="link" href="#">Посмотреть</a>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
                     <h6 class="my-0">Завершено:</h6>
                 </div>
-                <span class="text-body-secondary">{{ done_task_count }}</span>
+                <span class="text-body-secondary-center">{{ done_task_count }}</span>
+                <a class="link" href="#">Посмотреть</a>
             </li>
             <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                 <div class="text-success">
                     <h6 class="my-0">Отменено:</h6>
                 </div>
-                <span class="text-success">{{ closed_task_count }}</span>
+                <span class="text-success-center">{{ closed_task_count }}</span>
+                <a class="link" href="#">Посмотреть</a>
             </li>
         </ul>
     </div>
 
-    <div class="col-md-7 col-lg-8">
+    <div class="col-md-7 col-lg-6">
         <h4 class="mb-3">Список задач</h4>
 
         {% for task in object_list %}
@@ -53,31 +57,31 @@
                 <div>
                     <h6 class="my-0">Название:</h6>
                 </div>
-                <span class="text-body-secondary">{{ task.title }}</span>
+                <span class="text-body-secondary-center">{{ task.title }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
                     <h6 class="my-0">Исполнитель:</h6>
                 </div>
-                <span class="text-body-secondary">{{ task.employee }}</span>
+                <span class="text-body-secondary-center">{{ task.employee }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
                     <h6 class="my-0">Строк исполнения:</h6>
                 </div>
-                <span class="text-body-secondary">{{ task.deadline }}</span>
+                <span class="text-body-secondary-center">{{ task.deadline }}</span>
             </li>
                 <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
                     <h6 class="my-0">Статус:</h6>
                 </div>
-                <span class="text-body-secondary">{{ task.get_status_display }}</span>
+                <span class="text-body-secondary-center">{{ task.get_status_display }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                 <div class="text-success">
                     <h6 class="my-0">Создатель:</h6>
                 </div>
-                <span class="text-success">{{ task.owner }}</span>
+                <span class="text-success-center">{{ task.owner }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                 <div class="text-success">
