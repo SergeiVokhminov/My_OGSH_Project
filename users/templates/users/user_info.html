@@ -23,53 +23,57 @@
                     </div>
                 </div>
             </div>
+
             <div class="col">
-                <div class="col-md-6 col-lg-12">
-                    <div class="card shadow-sm mb-3">
-                        <div class="card-body d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="my-0">Количество созданных задач:</h6>
-                            </div>
-                            <span class="text-body-secondary">{{ task_count }}</span>
+                <h4 class="mb-3">Информация о сотрудниках</h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">На работе:</h6>
                         </div>
-                    </div>
-                    <div class="card shadow-sm mb-3">
-                        <div class="card-body d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="my-0">Количество активных задач:</h6>
-                            </div>
-                            <span class="text-body-secondary">{{ start_task_count }}</span>
-                            <a href="{% url 'tasks:task_list' %}" class="btn btn-secondary my-2">Посмотреть</a>
+                        <span class="text-body-secondary">{{ user.user_at_work_count }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">В отпуске:</h6>
                         </div>
-                    </div>
-                    <div class="card shadow-sm mb-3">
-                        <div class="card-body d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="my-0">Количество свободных задач:</h6>
-                            </div>
-                            <span class="text-body-secondary">{{ free_task_count }}</span>
+                        <span class="text-body-secondary">{{ user_on_vacation_count }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">На больничном:</h6>
                         </div>
-                    </div>
-                    <div class="card shadow-sm mb-3">
-                        <div class="card-body d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="my-0">Количество завершенных задач:</h6>
-                            </div>
-                            <span class="text-body-secondary">{{ done_task_count }}</span>
+                        <span class="text-body-secondary">{{ user_on_sick_leave_count }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">Прогул:</h6>
                         </div>
-                    </div>
-                    <div class="card shadow-sm mb-3">
-                        <div class="card-body d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="my-0">Количество отмененных задач:</h6>
-                            </div>
-                            <span class="text-body-secondary">{{ closed_task_count }}</span>
+                        <span class="text-body-secondary">{{ user_truancy_count }}</span>
+                    </li>
+                </ul>
+
+                <h4 class="mb-3">Информация о задачах</h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">Количество созданных задач:</h6>
                         </div>
-                    </div>
-                    <section class="py-3 text-center container">
-                        <a href="{% url 'tasks:task_create' %}" class="btn btn-secondary my-2">Добавить задачу</a>
-                    </section>
-                </div>
+                        <span class="text-body-secondary"></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">Количество задач в работе:</h6>
+                        </div>
+                        <span class="text-body-secondary"></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">Количество свободных задач:</h6>
+                        </div>
+                        <span class="text-body-secondary"></span>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
