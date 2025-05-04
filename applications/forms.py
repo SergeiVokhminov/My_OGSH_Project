@@ -25,3 +25,7 @@ class ApplicationUpdateForm(forms.ModelForm):
         self.fields["deadline"].widget.attrs.update(
             {"class": "form-control", "placeholder": "Введите срок исполнения заявки"}
         )
+
+
+class ConfirmTaskForm(forms.Form):
+    confirm = forms.BooleanField(required=True, label="Я подтверждаю выполнение задачи")
