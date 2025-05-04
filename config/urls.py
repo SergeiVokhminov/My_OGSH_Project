@@ -8,6 +8,7 @@ urlpatterns = [
     path("", include("users.urls"), name="users"),
     path("tasks/", include("tasks.urls"), name="tasks"),
     path("applications/", include("applications.urls"), name="applications"),
+    path("mailing/", include("mailing.urls"), name="mailing"),
 ]
 
 if settings.DEBUG:
