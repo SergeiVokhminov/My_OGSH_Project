@@ -1,7 +1,7 @@
 # from datetime import datetime
 #
 # from django.conf import settings
-# from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 # from django.http import HttpResponseForbidden
 from django.db.models import Count, Q
 from django.shortcuts import render
@@ -35,7 +35,7 @@ class TaskCreateView(CreateView):
         return self.request.user.is_superuser
 
 
-class TaskListView(ListView):
+class TaskListView(LoginRequiredMixin, ListView):
     """Контроллер отображения списка задач."""
 
     model = Task
@@ -56,6 +56,13 @@ class TaskListView(ListView):
         ).count()  # Считаем количество задач "Отменена"
 
         return context
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_superuser:
+            return Task.objects.all()  # Суперпользователь видит все задачи
+        else:
+            return Task.objects.filter(employee=user)  # Обычный пользователь видит только свои задачи
 
 
 class TaskDetailsView(DetailView):
