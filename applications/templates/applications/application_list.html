@@ -1,0 +1,30 @@
+{% extends 'users/base.html' %}
+{% load my_tags %}
+{% block title %}Список заявок{% endblock %}
+{% block content %}
+<div class="col-mb-3">
+    <h6 class="my-0">Количество заявок:</h6>
+<!--    {% for application in object_list %}-->
+    <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+                <h6 class="my-0">Название:</h6>
+            </div>
+            <span class="text-body-secondary-center">{{ application.title }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+                <h6 class="my-0">Описание:</h6>
+            </div>
+            <span class="text-body-secondary-center">{{ application.description }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+                <h6 class="my-0">Срок исполнения:</h6>
+            </div>
+            <span class="text-body-secondary-center">{{ application.deadline }}</span>
+    </ul>
+<!--    {% endfor %}-->
+</div>
+
+{% endblock %}

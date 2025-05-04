@@ -1,0 +1,22 @@
+{% extends 'users/base.html' %}
+{% load my_tags %}
+{% block title %}Информация по заявкам{% endblock %}
+{% block content %}
+
+<section class="py-5 text-center container">
+    <a href="{% url 'applications:application_list' %}" class="btn btn-secondary my-2">Заявки на установщиков</a>
+    <a href="#" class="btn btn-secondary my-2">Заявки на ремонтные работы</a>
+    <a href="#" class="btn btn-secondary my-2">Заявки на уборку</a>
+    <a href="#" class="btn btn-secondary my-2">Заявки на гардероб</a>
+</section>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 text-center container">
+<div class="col-md-3 text-center container">
+    <div class="card shadow-sm">
+        <a class="btn btn-primary" href="{% url 'applications:application_create' %}" role="button">
+            Добавить заявку
+        </a>
+    </div>
+</div>
+</div>
+
+{% endblock %}
