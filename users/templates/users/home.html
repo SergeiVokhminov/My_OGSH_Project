@@ -6,6 +6,7 @@
     {% if user.is_superuser %}
         <h1 class="fw-light">Привет, {{ user.first_name | default:user.email }}!</h1>
         <h1 class="fw-light">Контролируй задачи сотрудников.</h1>
+        <h1 class="fw-light">Контролируй заявки поступающие в Отдел.</h1>
     {% elif user.is_authenticated %}
         <h1 class="fw-light">Привет, {{ user.first_name | default:user.email }}</h1>
         <h1 class="fw-light">Проверь свои задачи.</h1>
@@ -60,7 +61,7 @@
     {% if user.is_superuser %}
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
-           href="" role="button">Заявки на Отдел
+           href="{% url 'applications:application_info' %}" role="button">Заявки на Отдел
         </a>
     </div>
     <div class="col">
