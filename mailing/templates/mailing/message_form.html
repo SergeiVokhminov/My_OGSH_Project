@@ -1,5 +1,5 @@
 {% extends 'users/base.html' %}
-{% block title %}Создание/Изменение рассылки{% endblock %}
+{% block title %}Создание/Изменение сообщения{% endblock %}
 {% block content %}
 <div class="container">
     <h1 class="mb-4">
@@ -19,7 +19,7 @@
             Создать
             {% endif %}
         </button>
-        <a class="btn btn-secondary" href="{% url 'mailing:mailing_list' %}">Отмена</a>
+        <a class="btn btn-secondary" href="{% url 'mailing:message_list' %}">Отмена</a>
     </form>
 </div>
 {% endblock %}

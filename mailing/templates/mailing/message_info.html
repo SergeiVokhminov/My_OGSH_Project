@@ -1,5 +1,5 @@
 {% extends 'users/base.html' %}
-{% block title %}Информация по рассылкам{% endblock %}
+{% block title %}Информация по сообщениям{% endblock %}
 {% block content %}
 <div class="album py-5 bg-body-tertiary">
     <div class="container">
@@ -7,15 +7,15 @@
             {% if user.is_authenticated %}
             <div class="col">
                 <div class="card shadow-sm">
-                    <a class="btn btn-primary" href="{% url 'mailing:mailing_list' %}" role="button">
-                        Список рассылок
+                    <a class="btn btn-primary" href="{% url 'mailing:message_list' %}" role="button">
+                        Список сообщений
                     </a>
                 </div>
             </div>
             <div class="col">
                 <div class="card shadow-sm">
-                    <a class="btn btn-primary" href="{% url 'mailing:mailing_create' %}" role="button">
-                        Добавить рассылку
+                    <a class="btn btn-primary" href="{% url 'mailing:message_create' %}" role="button">
+                        Добавить сообщение
                     </a>
                 </div>
             </div>
