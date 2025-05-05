@@ -11,14 +11,17 @@
         <h4 class="my-0 font-weight-normal mt-3">Задача: {{task.id}}</h4>
         <h4 class="my-0 font-weight-normal mt-3">Тема задачи: {{task.title}}</h4>
         <h4 class="my-0 font-weight-normal mt-3">Описание задачи: {{task.description}}</h4>
-        <h4 class="my-0 font-weight-normal mt-3">Родительская задача: {{task.parent_task}}</h4>
-        <h4 class="my-0 font-weight-normal mt-3">Исполнитель задачи: {{task.employee}}</h4>
+        <h4 class="my-0 font-weight-normal mt-3">Родительская задача: {{task.parent_task | default:"Не выбрана"}}</h4>
+        <h4 class="my-0 font-weight-normal mt-3">Исполнитель задачи: {{task.employee | default:"Не выбран"}}</h4>
         <h4 class="my-0 font-weight-normal mt-3">Срок исполнения: {{task.deadline}}</h4>
-        <h4 class="my-0 font-weight-normal mt-3">Статус задачи: {{task.status}}</h4>
+        <h4 class="my-0 font-weight-normal mt-3">Статус задачи: {{task.get_status_display}}</h4>
         <h4 class="my-0 font-weight-normal mt-3">Дата создания: {{task.created_at}}</h4>
         <div class="d-flex justify-content-center mt-4">
             <div class="btn-group" role="group" aria-label="Task management buttons">
-                {% if task.owner == user %}
+                <a class="btn btn-primary me-2" href="{% url 'tasks:task_list' %}" role="button">
+                    <i class="bi bi-arrow-left"></i> Назад
+                </a>
+                {% if user.is_superuser %}
                 <a class="btn btn-secondary me-2" href="{% url 'tasks:task_update' task.pk %}" role="button">
                     <i class="bi bi-pencil"></i> Редактировать
                 </a>
@@ -26,9 +29,6 @@
                     <i class="bi bi-trash"></i> Удалить
                 </a>
                 {% endif %}
-                <a class="btn btn-primary" href="{% url 'tasks:task_list' %}" role="button">
-                    <i class="bi bi-arrow-left"></i> Назад
-                </a>
             </div>
         </div>
     </div>
