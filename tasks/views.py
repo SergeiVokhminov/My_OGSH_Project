@@ -1,14 +1,7 @@
-# from datetime import datetime
-#
-# from django.conf import settings
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-# from django.http import HttpResponseForbidden
-from django.db.models import Count, Q
-from django.shortcuts import render
-from django.urls import reverse, reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from requests import Response
 
 from tasks.forms import TaskUpdateForm
 from tasks.models import Task
