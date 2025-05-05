@@ -1,6 +1,6 @@
 {% extends 'users/base.html' %}
 {% load my_tags %}
-{% block title %}Мой профиль{% endblock %}
+{% block title %}Детали профиль{% endblock %}
 {% block content %}
 <section class="py-5 container">
     <div class="container">
@@ -10,15 +10,15 @@
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <img src="{{ object.avatar | media_filter }}" width="100%" height="250">
-                            <h4 class="my-0 font-weight-normal mt-3">Электронная почта: {{ object.email }}</h4>
+                            <h4 class="my-0 font-weight-normal mt-3">Электронная почта: {{object.email}}</h4>
                             <h4 class="my-0 font-weight-normal mt-3">Фамилия: {{ object.last_name }}</h4>
                             <h4 class="my-0 font-weight-normal mt-3">Имя: {{ object.first_name }}</h4>
-                            <h4 class="my-0 font-weight-normal mt-3">Отчество: {{ object.patronymic }}</h4>
-                            <h4 class="my-0 font-weight-normal mt-3">Должность: {{ object.position }}</h4>
+                            <h4 class="my-0 font-weight-normal mt-3">Отчество: {{object.patronymic }}</h4>
+                            <h4 class="my-0 font-weight-normal mt-3">Должность: {{object.position}}</h4>
                             <h4 class="my-0 font-weight-normal mt-3">Телефон: {{ object.phone_number | default:"не указан" }}</h4>
                             <h4 class="my-0 font-weight-normal mt-3">Адрес: {{ object.address | default:"не указан" }}</h4>
                             <h4 class="my-0 font-weight-normal mt-3">День рождения: {{ object.date_of_birth }}</h4>
-                            <h4 class="my-0 font-weight-normal mt-3">Последний вход: {{ object.last_login }}</h4>
+                            <h4 class="my-0 font-weight-normal mt-3">Последний вход: {{object.last_login}}</h4>
                             <h4 class="my-0 font-weight-normal mt-3">Дата регистрации: {{ object.date_joined }}</h4>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
 </section>
 <section class="py-5 text-center container">
     <a href="{% url 'users:user_update' user.pk %}" class="btn btn-primary my-2">Редактировать профиль</a>
-    <a href="#" class="btn btn-primary my-2">Добавить задачу</a>
-    <a href="#" class="btn btn-secondary my-2">Активные задачи</a>
+    <a href="{% url 'users:user_list' %}" class="btn btn-primary my-2">Отмена</a>
+    <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">На главную</a>
 </section>
 {% endblock %}

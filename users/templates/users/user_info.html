@@ -15,10 +15,14 @@
                             <h4 class="my-0 font-weight-normal mt-3">Имя: {{ object.first_name }}</h4>
                             <h4 class="my-0 font-weight-normal mt-3">Отчество: {{ object.patronymic | default:"Не указано" }}</h4>
                             <h4 class="my-0 font-weight-normal mt-3">Должность: {{ object.position }}</h4>
-                            <div class="col text-center">
+
+                            {% if user.is_superuser %}
+                            <div class="col mt-3 text-center">
                                 <a href="{% url 'users:user_update' user.pk %}" class="btn btn-primary my-2">Редактировать</a>
                                 <a href="{% url 'users:user_detail' user.pk %}" class="btn btn-primary my-2">Подробнее</a>
                             </div>
+                            {% endif %}
+
                         </div>
                     </div>
                 </div>
