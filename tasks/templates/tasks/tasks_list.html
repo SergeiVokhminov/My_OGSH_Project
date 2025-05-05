@@ -21,29 +21,25 @@
                 <div>
                     <h6 class="my-0">Свободных:</h6>
                 </div>
-                <span class="text-body-secondary-center">{{ free_task_count }}</span>
-                <a class="link" href="#">Посмотреть</a>
+                <a class="link" href="#">{{ free_task_count }}</a>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
                     <h6 class="my-0">В работе:</h6>
                 </div>
-                <span class="text-body-secondary-center">{{ start_task_count }}</span>
-                <a class="link" href="#">Посмотреть</a>
+                <a class="link" href="#">{{ start_task_count }}</a>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
                     <h6 class="my-0">Завершено:</h6>
                 </div>
-                <span class="text-body-secondary-center">{{ done_task_count }}</span>
-                <a class="link" href="#">Посмотреть</a>
+                <a class="link" href="#">{{ done_task_count }}</a>
             </li>
             <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                 <div class="text-success">
                     <h6 class="my-0">Отменено:</h6>
                 </div>
-                <span class="text-success-center">{{ closed_task_count }}</span>
-                <a class="link" href="#">Посмотреть</a>
+                <a class="link" href="#">{{ closed_task_count }}</a>
             </li>
         </ul>
     </div>
@@ -69,7 +65,7 @@
                 <div>
                     <h6 class="my-0">Строк исполнения:</h6>
                 </div>
-                <span class="text-body-secondary-center">{{ task.deadline | default:"Не задан" }}</span>
+                <span class="text-body-secondary-center">{{ task.deadline | default:"Не выбран" }}</span>
             </li>
                 <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
