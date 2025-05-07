@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView,
@@ -31,8 +31,12 @@ class UserInfoView(UpdateView):
         context["start_task_count"] = Task.objects.filter(
             status="start"
         ).count()  # Считаем количество задач "К исполнению"
-        context["free_task_count"] = Task.objects.filter(status="free").count()  # Считаем количество задач "Свободна"
-        context["done_task_count"] = Task.objects.filter(status="done").count()  # Считаем количество задач "Завершена"
+        context["free_task_count"] = Task.objects.filter(
+            status="free"
+        ).count()  # Считаем количество задач, статус "Свободна"
+        context["done_task_count"] = Task.objects.filter(
+            status="done"
+        ).count()  # Считаем количество задач, статус "Завершена"
         context["closed_task_count"] = Task.objects.filter(
             status="closed"
         ).count()  # Считаем количество задач "Отменена"
@@ -60,16 +64,17 @@ class UserLoginView(LoginView):
 
     model = User
     form_class = UserAuthForm
-    template_name = "users/login.html"  # Указываем путь к вашему шаблону
+    template_name = "users/login.html"  # Указываем путь к шаблону для входа
     success_url = reverse_lazy(
         "users:home"
-    )  # Укажите URL, на который будет перенаправлен пользователь после успешного входа
+    )  # Указываем URL, на который будет перенаправлен пользователь после успешного входа
     redirect_authenticated_user = (
         True  # Перенаправлять аутентифицированных пользователей
     )
 
     def form_valid(self, form):
         """Обрабатывает успешный вход пользователя."""
+
         user = form.get_user()
         login(self.request, user)
         messages.success(
@@ -79,6 +84,7 @@ class UserLoginView(LoginView):
 
     def form_invalid(self, form):
         """Обрабатывает случай, если форма невалидна."""
+
         messages.error(
             self.request, "Неправильное имя пользователя или пароль."
         )  # Сообщение об ошибке
