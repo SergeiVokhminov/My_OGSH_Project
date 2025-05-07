@@ -24,21 +24,32 @@
         </a>
     </div>
     <div class="col">
-        {% if user.is_superuser %}
         <a class="btn btn-success w-100" style="text-align: center"
            href="{% url 'users:user_list' %}" role="button">Информация о сотрудниках
         </a>
-        {% else %}
-        <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'users:user_list' %}" role="button">Список сотрудников
-        </a>
-        {% endif %}
     </div>
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
            href="{% url 'users:user_info' user.pk %}" role="button">Личный кабинет
         </a>
     </div>
+    {% if user.is_superuser %}
+<!--    <div class="col">-->
+<!--        <a class="btn btn-success w-100" style="text-align: center"-->
+<!--           href="{% url 'mailing:recipient_info' %}" role="button">Список рассылок-->
+<!--        </a>-->
+<!--    </div>-->
+<!--    <div class="col">-->
+<!--        <a class="btn btn-success w-100" style="text-align: center"-->
+<!--           href="{% url 'mailing:message_info' %}" role="button">Список сообщений-->
+<!--        </a>-->
+<!--    </div>-->
+    <div class="col">
+        <a class="btn btn-success w-100" style="text-align: center"
+           href="{% url 'admin:index' %}" role="button">Войти в административную часть сайта
+        </a>
+    </div>
+    {% endif %}
     <div class="col">
         <form method="post" action="{% url 'users:logout' %}">
             {% csrf_token %}
@@ -58,28 +69,7 @@
         </a>
     </div>
     {% endif %}
-    {% if user.is_superuser %}
-    <div class="col">
-        <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'applications:application_info' %}" role="button">Заявки на Отдел
-        </a>
-    </div>
-    <div class="col">
-        <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'mailing:recipient_info' %}" role="button">Список рассылок
-        </a>
-    </div>
-    <div class="col">
-        <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'mailing:message_info' %}" role="button">Список сообщений
-        </a>
-    </div>
-    <div class="col">
-        <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'admin:index' %}" role="button">Войти в административную часть сайта
-        </a>
-    </div>
-    {% endif %}
+
 </div>
 </section>
 {% endblock %}
