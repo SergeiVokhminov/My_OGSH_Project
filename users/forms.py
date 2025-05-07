@@ -19,7 +19,19 @@ class UserForm(forms.ModelForm):
 class UserAuthForm(AuthenticationForm):
     """Форма входа на сайт."""
 
-    pass
+    username = forms.CharField(
+        max_length=254,
+        widget=forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Введите email"}
+        ),
+    )
+    password = forms.CharField(
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={"class": "form-control", "placeholder": "Введите пароль"}
+        ),
+        label="Пароль"
+    )
 
 
 class UserRegisterForm(UserCreationForm):
