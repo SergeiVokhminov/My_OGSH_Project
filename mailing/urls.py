@@ -1,8 +1,7 @@
 from django.urls import path
-from django.views.decorators.cache import cache_page
 
 from mailing.apps import MailingConfig
-from mailing.views import (HomeView, MessageListView, MessageDetailsView, MessageCreateView,
+from mailing.views import (MessageListView, MessageDetailsView, MessageCreateView,
                            MessageUpdateView, MessageDeleteView, RecipientListView, RecipientDetailsView,
                            RecipientCreateView, RecipientUpdateView, RecipientDeleteView, MessageInfoView,
                            RecipientInfoView)
