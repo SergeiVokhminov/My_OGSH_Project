@@ -1,3 +1,6 @@
+from django.contrib import messages
+from django.contrib.auth import login
+from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -10,7 +13,7 @@ from django.views.generic import (
 )
 
 from tasks.models import Task
-from users.forms import UserForm, UserRegisterForm, UserUpdateForm
+from users.forms import UserForm, UserRegisterForm, UserUpdateForm, UserAuthForm
 from users.models import User
 
 
@@ -50,6 +53,36 @@ class UserRegisterView(CreateView):
     form_class = UserRegisterForm
     template_name = "users/register.html"
     success_url = reverse_lazy("users:login")
+
+
+class UserLoginView(LoginView):
+    """Контроллер для входа на сайт."""
+
+    model = User
+    form_class = UserAuthForm
+    template_name = "users/login.html"  # Указываем путь к вашему шаблону
+    success_url = reverse_lazy(
+        "users:home"
+    )  # Укажите URL, на который будет перенаправлен пользователь после успешного входа
+    redirect_authenticated_user = (
+        True  # Перенаправлять аутентифицированных пользователей
+    )
+
+    def form_valid(self, form):
+        """Обрабатывает успешный вход пользователя."""
+        user = form.get_user()
+        login(self.request, user)
+        messages.success(
+            self.request, "Вы успешно вошли в систему."
+        )  # Сообщение об успешном входе
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        """Обрабатывает случай, если форма невалидна."""
+        messages.error(
+            self.request, "Неправильное имя пользователя или пароль."
+        )  # Сообщение об ошибке
+        return super().form_invalid(form)
 
 
 class UserListView(ListView):
