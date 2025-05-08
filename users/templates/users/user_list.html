@@ -12,33 +12,23 @@
 
         <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">Количество сотрудников:</h6>
-                </div>
-                <span class="text-body-secondary">{{ user_count }}</span>
+                <h6 class="my-0">Количество сотрудников:</h6>
+                <span class="text-body-secondary-centre">{{ user_count }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">На работе</h6>
-                </div>
+                <h6 class="my-0">На работе</h6>
                 <a class="link" href="#">{{ user_at_work_count }}</a>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">В отпуске</h6>
-                </div>
+                <h6 class="my-0">В отпуске</h6>
                 <a class="link" href="#">{{ user_on_vacation_count }}</a>
             </li>
-            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-                <div class="text-success">
-                    <h6 class="my-0">На больничном</h6>
-                </div>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <h6 class="my-0">На больничном</h6>
                 <a class="link" href="#">{{ user_on_sick_leave_count }}</a>
             </li>
-            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-                <div class="text-success">
-                    <h6 class="my-0">Отсутствует по невыясненным обстоятельствам</h6>
-                </div>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <h6 class="my-0">Отсутствует по невыясненным обстоятельствам</h6>
                 <a class="link" href="#">{{ user_truancy_count }}</a>
             </li>
         </ul>
@@ -50,39 +40,27 @@
         {% for user in object_list %}
             <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">Фамилия:</h6>
-                </div>
-                <span class="text-body-secondary">{{ user.last_name }}</span>
+                <h6 class="my-0">Фамилия:</h6>
+                <span class="text-body-secondary-centre">{{ user.last_name }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">Имя:</h6>
-                </div>
-                <span class="text-body-secondary">{{ user.first_name }}</span>
+                <h6 class="my-0">Имя:</h6>
+                <span class="text-body-secondary-centre">{{ user.first_name }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">Должность:</h6>
-                </div>
-                <span class="text-body-secondary">{{ user.position }}</span>
+                <h6 class="my-0">Должность:</h6>
+                <span class="text-body-secondary-centre">{{ user.position }}</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-                <div class="text-success">
-                    <h6 class="my-0">Последний вход:</h6>
-                </div>
-                <span class="text-success">{{ user.last_login }}</span>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <h6 class="my-0">Последний вход:</h6>
+                <span class="text-body-secondary-centre">{{ user.last_login }}</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-                <div class="text-success">
-                    <h6 class="my-0">Статус сотрудника:</h6>
-                </div>
-                <span class="text-success">{{ user.get_condition_display }}</span>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <h6 class="my-0">Статус сотрудника:</h6>
+                <span class="text-body-secondary-centre">{{ user.get_condition_display }}</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-                <div class="text-success">
-                    <h6 class="my-0">Подробнее:</h6>
-                </div>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <h6 class="my-0">Подробнее:</h6>
                 <a class="link" href="{% url 'users:user_detail' user.pk %}">Посмотреть</a>
             </li>
         </ul>

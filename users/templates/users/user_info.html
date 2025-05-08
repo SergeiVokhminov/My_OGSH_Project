@@ -18,7 +18,6 @@
 
                             {% if user.is_superuser %}
                             <div class="col mt-3 text-center">
-                                <a href="{% url 'users:user_update' user.pk %}" class="btn btn-primary my-2">Редактировать</a>
                                 <a href="{% url 'users:user_detail' user.pk %}" class="btn btn-primary my-2">Подробнее</a>
                             </div>
                             {% endif %}
