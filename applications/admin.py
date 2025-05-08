@@ -9,6 +9,7 @@ class ApplicationAdmin(admin.ModelAdmin):
         "title",
         "description",
         "deadline",
+        "times",
         "created_at",
         "updated_at",
     )

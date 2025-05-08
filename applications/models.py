@@ -18,6 +18,11 @@ class Application(models.Model):
         null=True,
         blank=True,
     )
+    times = models.TimeField(
+        verbose_name="Время исполнения",
+        null=True,
+        blank=True,
+    )
     created_at = models.DateField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateField(auto_now=True, verbose_name="Дата обновления")
 
