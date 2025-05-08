@@ -72,24 +72,6 @@ class UserLoginView(LoginView):
         True  # Перенаправлять аутентифицированных пользователей
     )
 
-    def form_valid(self, form):
-        """Обрабатывает успешный вход пользователя."""
-
-        user = form.get_user()
-        login(self.request, user)
-        messages.success(
-            self.request, "Вы успешно вошли в систему."
-        )  # Сообщение об успешном входе
-        return super().form_valid(form)
-
-    def form_invalid(self, form):
-        """Обрабатывает случай, если форма невалидна."""
-
-        messages.error(
-            self.request, "Неправильное имя пользователя или пароль."
-        )  # Сообщение об ошибке
-        return super().form_invalid(form)
-
 
 class UserListView(ListView):
     """Контроллер отображения списка пользователей сервиса."""
