@@ -35,7 +35,7 @@
                 </div>
                 <a class="link" href="#">{{ done_task_count }}</a>
             </li>
-            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div class="text-success">
                     <h6 class="my-0">Отменено:</h6>
                 </div>
@@ -73,13 +73,13 @@
                 </div>
                 <span class="text-body-secondary-center">{{ task.get_status_display }}</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div class="text-success">
                     <h6 class="my-0">Создатель:</h6>
                 </div>
                 <span class="text-success-center">{{ task.owner }}</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div class="text-success">
                     <h6 class="my-0">Подробнее:</h6>
                 </div>
@@ -87,7 +87,9 @@
             </li>
         </ul>
         {% endfor %}
+
     </div>
+
 </div>
 
 <section class="py-5 text-center container">
