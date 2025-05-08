@@ -64,7 +64,7 @@ class User(AbstractUser):
     def __str__(self):
         """Метод для строкового представления объекта User."""
 
-        return f"{self.last_name} {self.first_name}"
+        return f"{self.last_name} {self.first_name} - {self.position}"
 
     class Meta:
         """Мета-информация модели User."""
