@@ -5,6 +5,24 @@
 <section class="py-5 text-center container">
     {% if user.is_superuser %}
         <h1 class="fw-light">Привет, {{ user.first_name | default:user.email }}!</h1>
+    <div class="row g-3">
+        <div class="col-sm-2">
+            <label for="date_application" class="form-label">Дата:</label>
+                {% now "d.m.Y" as current_date %}
+            <input type="text" class="form-control" id="date_application" value="{{ current_date }}" required>
+            <div class="invalid-feedback">
+                Valid first name is required.
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <label for="time_application" class="form-label">Время:</label>
+            {% now "H:i" as current_time %}
+            <input type="text" class="form-control" id="time_application" value="{{ current_time }}" required>
+            <div class="invalid-feedback">
+                Valid first name is required.
+            </div>
+        </div>
+    </div>
     {% elif user.is_authenticated %}
         <h1 class="fw-light">Привет, {{ user.first_name | default:user.email }}</h1>
         <h1 class="fw-light">Проверь свои задачи.</h1>
