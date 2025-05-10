@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
@@ -46,6 +48,22 @@ class HomeView(TemplateView):
     """Контроллер представления главной страницы."""
 
     template_name = "users/home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        now = datetime.now()
+        hour = now.hour
+        if 5 <= hour < 12:
+            greeting = "Доброе утро"
+        elif 12 <= hour < 18:
+            greeting = "Добрый день"
+        elif 18 <= hour < 23:
+            greeting = "Добрый вечер"
+        else:
+            greeting = "Доброй ночи"
+
+        context["greeting"] = greeting
+        return context
 
 
 class UserRegisterView(CreateView):
