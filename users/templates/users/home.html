@@ -2,7 +2,7 @@
 {% load my_tags %}
 {% block title %}Главная страница{% endblock %}
 {% block content %}
-<section class="py-4 text-center container">
+<section class="text-center container">
     {% if user.is_superuser %}
         <h1 class="fw-light">{{ greeting }}, {{ user.first_name | default:user.email }}!</h1>
     <div class="row g-3">
@@ -33,6 +33,7 @@
         </p>
     {% endif %}
 </section>
+
 <section class="py-5 text-center container">
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 text-center"> <!--  -->
     {% if user.is_authenticated %}
@@ -56,17 +57,8 @@
            href="{% url 'users:user_info' user.pk %}" role="button">Личный кабинет
         </a>
     </div>
+
     {% if user.is_superuser %}
-<!--    <div class="col">-->
-<!--        <a class="btn btn-success w-100" style="text-align: center"-->
-<!--           href="{% url 'mailing:recipient_info' %}" role="button">Список рассылок-->
-<!--        </a>-->
-<!--    </div>-->
-<!--    <div class="col">-->
-<!--        <a class="btn btn-success w-100" style="text-align: center"-->
-<!--           href="{% url 'mailing:message_info' %}" role="button">Список сообщений-->
-<!--        </a>-->
-<!--    </div>-->
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
            href="{% url 'admin:index' %}" role="button">Войти в административную часть сайта
@@ -95,4 +87,5 @@
 
 </div>
 </section>
+
 {% endblock %}
