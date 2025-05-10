@@ -1,14 +1,15 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from applications.forms import ApplicationUpdateForm
+from applications.forms import ApplicationUpdateForm, ApplicationForm
 from applications.models import Application
 
 
 class ApplicationHomeView(TemplateView):
-    """Контроллер представления главной страницы."""
+    """Контроллер представления главной страницы заявок."""
 
     template_name = "applications/application_info.html"
 
@@ -26,9 +27,14 @@ class ApplicationListView(LoginRequiredMixin, ListView):
     """Контроллер отображения списка заявок."""
 
     model = Application
-    context_object_name = "tasks"  # Указываем имя переменной для контекста
     template_name = "applications/application_list.html"
-    queryset = Application.objects.all()  # Получение всех задач
+    queryset = Application.objects.all()  # Получение всех заявок
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["application_count"] = Application.objects.count()  # Считаем количество заявок
+
+        return context
 
 
 class ApplicationDetailsView(DetailView):
@@ -52,4 +58,14 @@ class ApplicationDeleteView(DeleteView):
 
     model = Application
     template_name = "applications/application_confirm_delete.html"
+    success_url = reverse_lazy("applications:application_list")
+
+# Дополнительные представления для проверки
+
+class NewApplicationCreateView(CreateView):
+    """Контроллер создания заявки."""
+
+    model = Application
+    form_class = ApplicationForm
+    template_name = "applications/new_application_form.html"
     success_url = reverse_lazy("applications:application_list")
