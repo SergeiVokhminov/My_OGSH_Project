@@ -13,6 +13,7 @@ class Application(models.Model):
         null=True,
         blank=True,
     )
+
     deadline = models.DateField(
         verbose_name="Дата исполнения",
         null=True,
