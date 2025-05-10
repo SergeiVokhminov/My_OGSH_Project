@@ -2,9 +2,9 @@
 {% load my_tags %}
 {% block title %}Главная страница{% endblock %}
 {% block content %}
-<section class="py-5 text-center container">
+<section class="py-4 text-center container">
     {% if user.is_superuser %}
-        <h1 class="fw-light">Привет, {{ user.first_name | default:user.email }}!</h1>
+        <h1 class="fw-light">{{ greeting }}, {{ user.first_name | default:user.email }}!</h1>
     <div class="row g-3">
         <div class="col-sm-2">
             <label for="date_application" class="form-label">Дата:</label>
