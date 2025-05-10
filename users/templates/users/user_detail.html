@@ -25,10 +25,8 @@
 </div>
 
 <section class="text-center container">
-    {% if user.is_superuser %}
-        <a href="{% url 'users:user_update' user.pk %}" class="btn btn-primary my-2">Редактировать профиль</a>
-    {% endif %}
-        <a href="{% url 'users:user_info' user.pk %}" class="btn btn-primary my-2">Отмена</a>
-        <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">На главную</a>
+    <a href="{% url 'users:user_update' user.pk %}" class="btn btn-primary my-2">Редактировать профиль</a>
+    <a href="{% url 'users:user_info' user.pk %}" class="btn btn-primary my-2">Отмена</a>
+    <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">На главную</a>
 </section>
 {% endblock %}
