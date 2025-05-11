@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
@@ -12,12 +10,13 @@ from django.views.generic import (
     UpdateView,
 )
 
-from tasks.models import Task
+from tasks.utils import TaskCounter
 from users.forms import UserForm, UserRegisterForm, UserUpdateForm, UserAuthForm
 from users.models import User
+from users.utils import UserCounter, TimeGreeting
 
 
-class UserInfoView(UpdateView):
+class UserInfoView(ListView):
     """Контроллер просмотра профиля пользователя."""
 
     model = User
@@ -27,19 +26,20 @@ class UserInfoView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["task_count"] = Task.objects.count()  # Считаем количество задач
-        context["start_task_count"] = Task.objects.filter(
-            status="start"
-        ).count()  # Считаем количество задач "К исполнению"
-        context["free_task_count"] = Task.objects.filter(
-            status="free"
-        ).count()  # Считаем количество задач, статус "Свободна"
-        context["done_task_count"] = Task.objects.filter(
-            status="done"
-        ).count()  # Считаем количество задач, статус "Завершена"
-        context["closed_task_count"] = Task.objects.filter(
-            status="closed"
-        ).count()  # Считаем количество задач "Отменена"
+        counter_user = UserCounter()
+        counter_task = TaskCounter()
+
+        context["user_count"] = counter_user.total()  # Считаем количество пользователей
+        context["user_at_work_count"] = counter_user.at_work  # Считаем количество пользователей "На работе"
+        context["user_on_vacation_count"] = counter_user.on_vacation  # Считаем количество пользователей "В отпуске"
+        context["user_on_sick_leave_count"] = counter_user.on_sick_leave  # Считаем количество пользователей "На больничном"
+        context["user_truancy_count"] = counter_user.truancy  # Считаем количество пользователей "Прогул"
+
+        context["task_count"] = counter_task.total()  # Считаем общее количество созданных задач
+        context["start_task_count"] = counter_task.start_task  # Считаем количество задач "К исполнению"
+        context["free_task_count"] = counter_task.free_task  # Считаем количество задач "Свободна"
+        context["done_task_count"] = counter_task.done_task  # Считаем количество задач "Завершена"
+        context["closed_task_count"] = counter_task.closed_task  # Считаем количество задач "Отменена"
 
         return context
 
@@ -51,18 +51,10 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        now = datetime.now()
-        hour = now.hour
-        if 5 <= hour < 12:
-            greeting = "Доброе утро"
-        elif 12 <= hour < 18:
-            greeting = "Добрый день"
-        elif 18 <= hour < 23:
-            greeting = "Добрый вечер"
-        else:
-            greeting = "Доброй ночи"
+        counter = UserCounter()
+        context["greeting"] = TimeGreeting.get_greeting()  # Применяем класс приветствия
+        context["user_at_work_count"] = counter.at_work  # Считаем количество пользователей "На работе"
 
-        context["greeting"] = greeting
         return context
 
 
@@ -97,19 +89,14 @@ class UserListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["user_count"] = User.objects.count()  # Считаем количество пользователей
-        context["user_at_work_count"] = User.objects.filter(
-            condition="work"
-        ).count()  # Считаем количество пользователей "На работе"
-        context["user_on_vacation_count"] = User.objects.filter(
-            condition="vacation"
-        ).count()  # Считаем количество пользователей "В отпуске"
-        context["user_on_sick_leave_count"] = User.objects.filter(
-            condition="sick_leave"
-        ).count()  # Считаем количество пользователей "На больничном"
-        context["user_truancy_count"] = User.objects.filter(
-            condition="truancy"
-        ).count()  # Считаем количество пользователей "Прогул"
+        counter = UserCounter()
+
+        # Используем свойства или методы класса UserCounter
+        context["user_count"] = counter.total() # Считаем количество пользователей
+        context["user_at_work_count"] = counter.at_work # Считаем количество пользователей "На работе"
+        context["user_on_vacation_count"] = counter.on_vacation # Считаем количество пользователей "В отпуске"
+        context["user_on_sick_leave_count"] = counter.on_sick_leave # Считаем количество пользователей "На больничном"
+        context["user_truancy_count"] = counter.truancy # Считаем количество пользователей "Прогул"
 
         return context
 
