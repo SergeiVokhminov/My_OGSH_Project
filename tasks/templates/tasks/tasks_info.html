@@ -4,14 +4,50 @@
 {% block content %}
 <div class="row">
     <div class="col-md-6">
-        <div class="modal modal-sheet position-static d-block" tabindex="-1" role="dialog" id="modalSign">
+        <div class="modal modal-sheet position-static d-block" tabindex="-1" role="dialog" id="task_count">
             <div class="modal-dialog" role="document">
                 <div class="modal-content rounded-4 shadow">
                     <div class="modal-header p-4 pb-4 border-bottom-0 d-flex justify-content-center">
                         <div class="card-body">
-                            <h4 class="my-0 font-weight-normal mt-3 text-center">Информация о задаче:</h4>
+                            <h4 class="my-0 font-weight-normal mt-3 text-center">Общее количество всех задачах:</h4>
                             <hr class="my-4">
-                            <h4 class="my-0 font-weight-normal mt-3">Название:</h4>
+                            <h4 class="my-0 font-weight-normal mt-3">Количество: {{ task_count }}</h4>
+                            <section class="text-center container">
+                                <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">Подробнее</a>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="modal modal-sheet position-static d-block" tabindex="-1" role="dialog" id="task_work">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-4 shadow">
+                    <div class="modal-header p-4 pb-4 border-bottom-0 d-flex justify-content-center">
+                        <div class="card-body">
+                            <h4 class="my-0 font-weight-normal mt-3 text-center">Количество задача в работе:</h4>
+                            <hr class="my-4">
+                            <h4 class="my-0 font-weight-normal mt-3">Количество: {{ start_task_count }}</h4>
+                            <section class="text-center container">
+                                <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">Подробнее</a>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="modal modal-sheet position-static d-block" tabindex="-1" role="dialog" id="task_free">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-4 shadow">
+                    <div class="modal-header p-4 pb-4 border-bottom-0 d-flex justify-content-center">
+                        <div class="card-body">
+                            <h4 class="my-0 font-weight-normal mt-3 text-center">Количество свободных задач:</h4>
+                            <hr class="my-4">
+                            <h4 class="my-0 font-weight-normal mt-3">Количество: {{ free_task_count }}</h4>
                             <section class="text-center container">
                                 <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">Подробнее</a>
                             </section>
