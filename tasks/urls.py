@@ -6,12 +6,13 @@ from tasks.views import (
     TaskDetailsView,
     TaskListView,
     TasksDeleteView,
-    TaskUpdateView,
+    TaskUpdateView, TaskInfoView,
 )
 
 app_name = TasksConfig.name
 
 urlpatterns = [
+    path("info", TaskInfoView.as_view(), name="task_info"),
     path("create/", TaskCreateView.as_view(), name="task_create"),
     path("list/", TaskListView.as_view(), name="task_list"),
     path("detail/<int:pk>/", TaskDetailsView.as_view(), name="task_detail"),
