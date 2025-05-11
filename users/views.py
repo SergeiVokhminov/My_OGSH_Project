@@ -10,6 +10,7 @@ from django.views.generic import (
     UpdateView,
 )
 
+from applications.utils import ApplicationCounter
 from tasks.utils import TaskCounter
 from users.forms import UserAuthForm, UserForm, UserRegisterForm, UserUpdateForm
 from users.models import User
@@ -29,35 +30,35 @@ class UserInfoView(UpdateView):
         counter_user = UserCounter()
         counter_task = TaskCounter()
 
-        context["user_count"] = counter_user.total()  # Считаем количество пользователей
+        context["user_count"] = counter_user.total()  # Считаем общее количество пользователей
         context["user_at_work_count"] = (
             counter_user.at_work
-        )  # Считаем количество пользователей "На работе"
+        )  # Считаем количество пользователей со статусом "На работе"
         context["user_on_vacation_count"] = (
             counter_user.on_vacation
-        )  # Считаем количество пользователей "В отпуске"
+        )  # Считаем количество пользователей со статусом "В отпуске"
         context["user_on_sick_leave_count"] = (
             counter_user.on_sick_leave
-        )  # Считаем количество пользователей "На больничном"
+        )  # Считаем количество пользователей со статусом "На больничном"
         context["user_truancy_count"] = (
             counter_user.truancy
-        )  # Считаем количество пользователей "Прогул"
+        )  # Считаем количество пользователей со статусом "Прогул"
 
         context["task_count"] = (
             counter_task.total()
         )  # Считаем общее количество созданных задач
         context["start_task_count"] = (
             counter_task.start_task
-        )  # Считаем количество задач "К исполнению"
+        )  # Считаем количество задач со статусом "К исполнению"
         context["free_task_count"] = (
             counter_task.free_task
-        )  # Считаем количество задач "Свободна"
+        )  # Считаем количество задач со статусом "Свободна"
         context["done_task_count"] = (
             counter_task.done_task
-        )  # Считаем количество задач "Завершена"
+        )  # Считаем количество задач со статусом "Завершена"
         context["closed_task_count"] = (
             counter_task.closed_task
-        )  # Считаем количество задач "Отменена"
+        )  # Считаем количество задач со статусом "Отменена"
 
         return context
 
@@ -71,6 +72,7 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         counter_user = UserCounter()
         counter_task = TaskCounter()
+        counter_application = ApplicationCounter()
         context["greeting"] = TimeGreeting.get_greeting()  # Применяем класс приветствия
         context["user_at_work_count"] = (
             counter_user.at_work
@@ -80,8 +82,10 @@ class HomeView(TemplateView):
         )  # Считаем количество задач "К исполнению"
         context["free_task_count"] = (
             counter_task.free_task
-        )  # Считаем количество задач "Свободна"
-
+        )  # Считаем количество задач "Свободна" application_count
+        context["application_count"] = (
+            counter_application.total # Считаем общее количество заявок
+        )
         return context
 
 
