@@ -15,6 +15,21 @@ class TaskInfoView(TemplateView):
     form_class = TaskUpdateForm
     template_name = "tasks/tasks_info.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        counter = TaskCounter()
+        context["task_count"] = (
+            counter.total()
+        )  # Считаем общее количество созданных задач
+        context["start_task_count"] = (
+            counter.start_task
+        )  # Считаем количество задач "К исполнению"
+        context["free_task_count"] = (
+            counter.free_task
+        )  # Считаем количество задач "Свободна"
+
+        return context
+
 
 class TaskCreateView(CreateView):
     """Контроллер создания задачи."""
