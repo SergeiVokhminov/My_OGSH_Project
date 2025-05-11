@@ -17,6 +17,7 @@
 </section>
 <hr class="my-4">
 
+{% if user.is_superuser %}
 <section class="py-3 text-center container">
     <div class="row g-3">
         <div class="col-sm-2">
@@ -56,9 +57,17 @@
                 Valid first name is required.
             </div>
         </div>
+        <div class="col-sm-2">
+            <label for="application_count_work" class="form-label">Заявок в работе:</label>
+            <div class="form-control" id="application_count_work" style="text-align: center;">{{ application_count }}</div>
+            <div class="invalid-feedback">
+                Valid first name is required.
+            </div>
+        </div>
     </div>
 </section>
 <hr class="my-4">
+{% endif %}
 
 <section class="py-5 text-center container">
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 text-center"> <!--  -->
