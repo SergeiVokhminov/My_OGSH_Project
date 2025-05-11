@@ -1,10 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, DetailView, ListView
+from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from mailing.forms import MessageForm, RecipientForm
-from mailing.models import Recipient, Message
+from mailing.models import Message, Recipient
 
 
 class HomeView(TemplateView):

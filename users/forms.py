@@ -30,7 +30,7 @@ class UserAuthForm(AuthenticationForm):
         widget=forms.PasswordInput(
             attrs={"class": "form-control", "placeholder": "Введите пароль"}
         ),
-        label="Пароль"
+        label="Пароль",
     )
 
 

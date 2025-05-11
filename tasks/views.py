@@ -40,11 +40,21 @@ class TaskListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         counter = TaskCounter()
-        context["task_count"] = counter.total()  # Считаем общее количество созданных задач
-        context["start_task_count"] = counter.start_task  # Считаем количество задач "К исполнению"
-        context["free_task_count"] = counter.free_task  # Считаем количество задач "Свободна"
-        context["done_task_count"] = counter.done_task  # Считаем количество задач "Завершена"
-        context["closed_task_count"] = counter.closed_task  # Считаем количество задач "Отменена"
+        context["task_count"] = (
+            counter.total()
+        )  # Считаем общее количество созданных задач
+        context["start_task_count"] = (
+            counter.start_task
+        )  # Считаем количество задач "К исполнению"
+        context["free_task_count"] = (
+            counter.free_task
+        )  # Считаем количество задач "Свободна"
+        context["done_task_count"] = (
+            counter.done_task
+        )  # Считаем количество задач "Завершена"
+        context["closed_task_count"] = (
+            counter.closed_task
+        )  # Считаем количество задач "Отменена"
 
         return context
 
@@ -53,7 +63,9 @@ class TaskListView(LoginRequiredMixin, ListView):
         if user.is_superuser:
             return Task.objects.all()  # Суперпользователь видит все задачи
         else:
-            return Task.objects.filter(employee=user)  # Обычный пользователь видит только свои задачи
+            return Task.objects.filter(
+                employee=user
+            )  # Обычный пользователь видит только свои задачи
 
 
 class TaskDetailsView(DetailView):

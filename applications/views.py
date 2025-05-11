@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from applications.forms import ApplicationUpdateForm, ApplicationForm
+from applications.forms import ApplicationForm, ApplicationUpdateForm
 from applications.models import Application
 from users.views import UserListView
 
@@ -31,7 +31,9 @@ class ApplicationListView(UserListView, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["application_count"] = Application.objects.count()  # Считаем количество заявок
+        context["application_count"] = (
+            Application.objects.count()
+        )  # Считаем количество заявок
 
         return context
 
@@ -59,7 +61,9 @@ class ApplicationDeleteView(DeleteView):
     template_name = "applications/application_confirm_delete.html"
     success_url = reverse_lazy("applications:application_list")
 
+
 # Дополнительные представления для проверки
+
 
 class NewApplicationCreateView(CreateView):
     """Контроллер создания заявки."""

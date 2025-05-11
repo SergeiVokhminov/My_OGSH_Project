@@ -22,7 +22,12 @@ class Recipient(models.Model):
     email = models.EmailField(unique=True, verbose_name="Электронная почта")
     first_name = models.CharField(max_length=250, verbose_name="Имя получателя")
     last_name = models.CharField(max_length=250, verbose_name="Фамилия получателя")
-    patronymic = models.CharField(max_length=250, verbose_name="Отчество получателя", null=True, blank=True,)
+    patronymic = models.CharField(
+        max_length=250,
+        verbose_name="Отчество получателя",
+        null=True,
+        blank=True,
+    )
     comment = models.TextField(verbose_name="Комментарий", blank=True, null=True)
 
     def __str__(self):

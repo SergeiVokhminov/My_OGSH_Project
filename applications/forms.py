@@ -34,7 +34,10 @@ class ApplicationUpdateForm(forms.ModelForm):
             {"class": "form-control", "placeholder": "Введите описание заявки"}
         )
         self.fields["deadline"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Введите срок исполнения заявки в формате 00.00.0000"}
+            {
+                "class": "form-control",
+                "placeholder": "Введите срок исполнения заявки в формате 00.00.0000",
+            }
         )
 
 

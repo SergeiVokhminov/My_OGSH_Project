@@ -37,6 +37,7 @@ class UserCounter:
         """Определяем количество пользователей со статусом 'Прогул'."""
         return self.count_by_condition("truancy")
 
+
 class TimeGreeting:
     """Класс для вывода приветствия в зависимости от времени."""
 
