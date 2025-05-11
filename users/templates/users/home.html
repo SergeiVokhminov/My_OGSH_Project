@@ -15,13 +15,14 @@
         </p>
     {% endif %}
 </section>
+<hr class="my-4">
 
-<section class="text-center container">
+<section class="py-3 text-center container">
     <div class="row g-3">
         <div class="col-sm-2">
             <label for="date_application" class="form-label">Дата:</label>
                 {% now "d.m.Y" as current_date %}
-            <input type="text" class="form-control" id="date_application" value="{{ current_date }}" required>
+            <div class="form-control" id="date_application" style="text-align: center;">{{ current_date }}</div>
             <div class="invalid-feedback">
                 Valid first name is required.
             </div>
@@ -29,20 +30,35 @@
         <div class="col-sm-2">
             <label for="time_application" class="form-label">Время:</label>
             {% now "H:i" as current_time %}
-            <input type="text" class="form-control" id="time_application" value="{{ current_time }}" required>
+            <div class="form-control" id="time_application" style="text-align: center;">{{ current_time }}</div>
             <div class="invalid-feedback">
                 Valid first name is required.
             </div>
         </div>
         <div class="col-sm-2">
-            <label for="employee" class="form-label">На работе:</label>
-            <input type="text" class="form-control" id="employee" value="{{ user_at_work_count }}" required>
+            <label for="employee" class="form-label">Сотрудников на работе:</label>
+            <div class="form-control" id="employee" style="text-align: center;">{{ user_at_work_count }}</div>
+            <div class="invalid-feedback">
+                Valid first name is required.
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <label for="task_count_start" class="form-label">Задач в работе:</label>
+            <div class="form-control" id="task_count_start" style="text-align: center;">{{ start_task_count }}</div>
+            <div class="invalid-feedback">
+                Valid first name is required.
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <label for="task_count_free" class="form-label">Свободных задач:</label>
+            <div class="form-control" id="task_count_free" style="text-align: center;">{{ free_task_count }}</div>
             <div class="invalid-feedback">
                 Valid first name is required.
             </div>
         </div>
     </div>
 </section>
+<hr class="my-4">
 
 <section class="py-5 text-center container">
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 text-center"> <!--  -->
@@ -97,5 +113,6 @@
 
 </div>
 </section>
+<hr class="my-4">
 
 {% endblock %}
