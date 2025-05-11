@@ -1,11 +1,10 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
-from django.views import View
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from applications.forms import ApplicationUpdateForm, ApplicationForm
 from applications.models import Application
+from users.views import UserListView
 
 
 class ApplicationHomeView(TemplateView):
@@ -23,7 +22,7 @@ class ApplicationCreateView(CreateView):
     success_url = reverse_lazy("applications:application_list")
 
 
-class ApplicationListView(LoginRequiredMixin, ListView):
+class ApplicationListView(UserListView, ListView):
     """Контроллер отображения списка заявок."""
 
     model = Application
