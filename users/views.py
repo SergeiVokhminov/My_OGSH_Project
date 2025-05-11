@@ -16,7 +16,7 @@ from users.models import User
 from users.utils import UserCounter, TimeGreeting
 
 
-class UserInfoView(ListView):
+class UserInfoView(UpdateView):
     """Контроллер просмотра профиля пользователя."""
 
     model = User
@@ -51,9 +51,12 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        counter = UserCounter()
+        counter_user = UserCounter()
+        counter_task = TaskCounter()
         context["greeting"] = TimeGreeting.get_greeting()  # Применяем класс приветствия
-        context["user_at_work_count"] = counter.at_work  # Считаем количество пользователей "На работе"
+        context["user_at_work_count"] = counter_user.at_work  # Считаем количество пользователей "На работе"
+        context["start_task_count"] = counter_task.start_task  # Считаем количество задач "К исполнению"
+        context["free_task_count"] = counter_task.free_task  # Считаем количество задач "Свободна"
 
         return context
 
