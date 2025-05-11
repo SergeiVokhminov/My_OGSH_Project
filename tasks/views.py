@@ -1,11 +1,19 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from tasks.forms import TaskUpdateForm
 from tasks.models import Task
 from tasks.utils import TaskCounter
+
+
+class TaskInfoView(TemplateView):
+    """."""
+
+    model = Task
+    form_class = TaskUpdateForm
+    template_name = "tasks/tasks_info.html"
 
 
 class TaskCreateView(CreateView):
