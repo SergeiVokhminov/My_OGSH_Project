@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from applications.forms import ApplicationForm, ApplicationUpdateForm
 from applications.models import Application
+from applications.utils import ApplicationCounter
 from users.views import UserListView
 
 
@@ -31,9 +32,8 @@ class ApplicationListView(UserListView, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["application_count"] = (
-            Application.objects.count()
-        )  # Считаем количество заявок
+        counter_application = ApplicationCounter()
+        context["application_count"] = counter_application.total()  # Считаем количество заявок
 
         return context
 
