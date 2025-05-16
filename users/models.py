@@ -28,11 +28,11 @@ class User(AbstractUser):
     patronymic = models.CharField(
         max_length=50, verbose_name="Отчество", blank=True, null=True
     )
-    phone_number = models.CharField(
-        max_length=25, verbose_name="Номер телефона", blank=True, null=True
-    )
     position = models.CharField(
         max_length=100, verbose_name="Должность", blank=True, null=True
+    )
+    phone_number = models.CharField(
+        max_length=25, verbose_name="Номер телефона", blank=True, null=True
     )
     condition = models.CharField(
         choices=CONDITION_CHOICES,
