@@ -15,7 +15,7 @@
                                 <h4 class="my-0 font-weight-normal mt-3">Имя: {{ object.first_name }}</h4>
                                 <h4 class="my-0 font-weight-normal mt-3">Должность: {{object.position}}</h4>
                                 <h4 class="my-0 font-weight-normal mt-3">Электронная почта: {{object.email}}</h4>
-                                <h4 class="my-0 font-weight-normal mt-3">Телефон: {{ object.phone_number | default:"не указан" }}</h4>
+                                <h4 class="my-0 font-weight-normal mt-3">Телефон: {{ object.phone_number | default:"Не указан" }}</h4>
                                 <div class="my-0 font-weight-normal mt-3 text-center">
                                     <a href="{% url 'users:user_detail' user.pk %}" class="btn btn-secondary my-2">Подроднее</a>
                                 </div>

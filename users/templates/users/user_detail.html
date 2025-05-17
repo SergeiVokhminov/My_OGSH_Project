@@ -12,12 +12,12 @@
                      <h4 class="my-0 font-weight-normal mt-3">Фамилия: {{ object.last_name }}</h4>
                      <h4 class="my-0 font-weight-normal mt-3">Имя: {{ object.first_name }}</h4>
                      <h4 class="my-0 font-weight-normal mt-3">Отчество: {{object.patronymic }}</h4>
-                     <h4 class="my-0 font-weight-normal mt-3">Должность: {{object.position}}</h4>
-                     <h4 class="my-0 font-weight-normal mt-3">Структурное подразделение: {{object.department}}</h4>
-                     <h4 class="my-0 font-weight-normal mt-3">Телефон: {{ object.phone_number | default:"не указан" }}</h4>
+                     <h4 class="my-0 font-weight-normal mt-3">Должность: {{object.position | default:"Не указана"}}</h4>
+                     <h4 class="my-0 font-weight-normal mt-3">Структурное подразделение: {{object.department | default:"Не указано"}}</h4>
+                     <h4 class="my-0 font-weight-normal mt-3">Телефон: {{ object.phone_number | default:"Не указан" }}</h4>
                      <h4 class="my-0 font-weight-normal mt-3">Статус: {{object.get_condition_display}}</h4>
-                     <h4 class="my-0 font-weight-normal mt-3">Адрес: {{ object.address | default:"не указан" }}</h4>
-                     <h4 class="my-0 font-weight-normal mt-3">День рождения: {{ object.date_of_birth }}</h4>
+                     <h4 class="my-0 font-weight-normal mt-3">Адрес: {{object.address | default:"Не указан"}}</h4>
+                     <h4 class="my-0 font-weight-normal mt-3">День рождения: {{ object.date_of_birth | default:"Не указан" }}</h4>
                      <h4 class="my-0 font-weight-normal mt-3">Последний вход: {{object.last_login}}</h4>
                      <h4 class="my-0 font-weight-normal mt-3">Дата регистрации: {{ object.date_joined }}</h4>
                  </div>
