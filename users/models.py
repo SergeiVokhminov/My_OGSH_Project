@@ -36,7 +36,6 @@ class User(AbstractUser):
         verbose_name="Структурное подразделение",
         blank=True,
         null=True,
-        help_text="Отдел, к которому принадлежит сотрудник"
     )
     phone_number = models.CharField(
         max_length=25, verbose_name="Номер телефона", blank=True, null=True
