@@ -71,6 +71,7 @@ class UserUpdateForm(forms.ModelForm):
             "last_name",
             "patronymic",
             "position",
+            "department",
             "phone_number",
             "condition",
             "address",
@@ -93,6 +94,9 @@ class UserUpdateForm(forms.ModelForm):
         )
         self.fields["position"].widget.attrs.update(
             {"class": "form-control", "placeholder": "Введите должность"}
+        )
+        self.fields["department"].widget.attrs.update(
+            {"class": "form-control", "placeholder": "Введите структурное подразделение"}
         )
         self.fields["phone_number"].widget.attrs.update(
             {
