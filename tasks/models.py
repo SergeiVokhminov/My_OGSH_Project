@@ -36,14 +36,12 @@ class Task(models.Model):
         null=True,
         blank=True,
     )
-    employee = models.ForeignKey(
+    employee = models.ManyToManyField(
         User,
-        on_delete=models.SET_NULL,
         related_name="tasks",
         verbose_name="Исполнители",
         default="Не выбран",
         blank=True,
-        null=True,
     )
     status = models.CharField(
         choices=STATUS_CHOICES,
