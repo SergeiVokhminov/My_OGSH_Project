@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "tasks",
     "applications",
     "mailing",
+    "departments",
 ]
 
 # Список промежуточного ПО, которое обрабатывает входящие запросы и выходящие ответы.
