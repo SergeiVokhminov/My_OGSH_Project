@@ -72,8 +72,12 @@ class Task(models.Model):
     )
 
     def __str__(self):
+        """Метод для строкового представления объекта Task."""
+
         return f"{self.title}"
 
     class Meta:
+        """Мета-информация модели Task."""
+
         verbose_name = "Задача"
         verbose_name_plural = "Задачи"
