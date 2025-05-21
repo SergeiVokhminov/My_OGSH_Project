@@ -1,21 +1,11 @@
 from django.db import models
 
+from departments.models import Department
+
 
 class Application(models.Model):
     """Поля для модели заявки."""
 
-    DEPARTMENT_CHOICES = [
-        ("OGESh", "ОЭГШ"),
-        ("SB", "CБ"),
-        ("SIT", "СИТ"),
-        ("OGM", "ОГМ"),
-        # Добавить другие отделы при необходимости
-    ]
-    department = models.CharField(
-        max_length=50,
-        choices=DEPARTMENT_CHOICES,
-        verbose_name="Отдел"
-    )
     title = models.CharField(
         max_length=250,
         verbose_name="Название заявки",
@@ -23,6 +13,14 @@ class Application(models.Model):
     description = models.TextField(
         verbose_name="Описание заявки",
         null=True,
+        blank=True,
+    )
+    department = models.ForeignKey(
+        Department,
+        on_delete=models.CASCADE,
+        verbose_name="Отдел",
+        related_name="departments",
+        default="Не выбран",
         blank=True,
     )
     deadline = models.DateField(

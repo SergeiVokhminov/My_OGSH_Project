@@ -2,20 +2,14 @@ from django.db import models
 
 
 class Department(models.Model):
-    """Поля для модели отдела."""
+    """Поля для модели отдел."""
 
-    DEPARTMENT_CHOICES = [
-        ("OGESh", "ОЭГШ"),
-        ("SB", "CБ"),
-        ("SIT", "СИТ"),
-        ("OGM", "ОГМ"),
-        # Добавить другие отделы при необходимости
-    ]
     name = models.CharField(
         max_length=50,
-        choices=DEPARTMENT_CHOICES,
         verbose_name="Название Отдела"
     )
+    phone = models.CharField(max_length=20, verbose_name="Номер телефона", null=True, blank=True)
+    number_of_people = models.IntegerField(verbose_name="Количество сотрудников", null=True, blank=True)
 
     def __str__(self):
         """Метод для строкового представления объекта Department."""
