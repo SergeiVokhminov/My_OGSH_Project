@@ -5,6 +5,8 @@ from users.models import User
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
+    """Поля в административной панели."""
+
     list_display = (
         "id",
         "email",
