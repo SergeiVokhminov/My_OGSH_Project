@@ -1,14 +1,13 @@
 from django.urls import path
 
 from applications.apps import ApplicationsConfig
-from applications.views import (  # проверка новых представлений
+from applications.views import (
     ApplicationCreateView,
     ApplicationDeleteView,
     ApplicationDetailsView,
     ApplicationHomeView,
     ApplicationListView,
     ApplicationUpdateView,
-    NewApplicationCreateView,
 )
 
 app_name = ApplicationsConfig.name
@@ -27,5 +26,4 @@ urlpatterns = [
         "delete/<int:pk>/", ApplicationDeleteView.as_view(), name="application_delete"
     ),
     # проверка новых маршрутов
-    path("new_form/", NewApplicationCreateView.as_view(), name="new_application_form"),
 ]
