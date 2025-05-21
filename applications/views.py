@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from applications.forms import ApplicationForm, ApplicationUpdateForm
+from applications.forms import ApplicationUpdateForm
 from applications.models import Application
 from applications.utils import ApplicationCounter
 from users.views import UserListView
@@ -63,12 +63,3 @@ class ApplicationDeleteView(DeleteView):
 
 
 # Дополнительные представления для проверки
-
-
-class NewApplicationCreateView(CreateView):
-    """Контроллер создания заявки."""
-
-    model = Application
-    form_class = ApplicationForm
-    template_name = "applications/new_application_form.html"
-    success_url = reverse_lazy("applications:application_list")
