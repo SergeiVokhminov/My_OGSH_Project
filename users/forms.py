@@ -17,7 +17,7 @@ class UserForm(forms.ModelForm):
 
 
 class UserAuthForm(AuthenticationForm):
-    """Форма входа на сайт."""
+    """Форма входа пользователя на сайт."""
 
     username = forms.CharField(
         max_length=254,
@@ -61,7 +61,7 @@ class UserRegisterForm(UserCreationForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-    """Форма обновления данных."""
+    """Форма обновления данных пользователя."""
 
     class Meta:
         model = User
