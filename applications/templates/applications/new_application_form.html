@@ -12,15 +12,15 @@
                     <h4 class="mb-3 text-center">Создание заявки</h4>
                     <div class="row g-3">
                         <div class="col-sm-3 mb-3">
-                            <label for="date_application" class="form-label">Дата выполнения заявки</label>
-                            <input type="date" class="form-control" id="date_application" required>
+                            <label for="id_deadline" class="form-label">Дата выполнения заявки</label>
+                            <input type="date" class="form-control" id="id_deadline" required>
                             <div class="invalid-feedback">
                                 Valid first name is required.
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <label for="time_application" class="form-label">Время выполнения заявки</label>
-                            <input type="time" class="form-control" id="time_application" value="{{ time_app }}" required>
+                            <label for="is_times" class="form-label">Время выполнения заявки</label>
+                            <input type="time" class="form-control" id="is_times" value="{{ time_app }}" required>
                             <div class="invalid-feedback">
                                 Valid first name is required.
                             </div>
@@ -40,8 +40,8 @@
                     <hr class="my-4">
                     <h4 class="mb-3 text-center">Информация по заявке</h4>
                     <div class="col-12">
-                        <label for="address" class="form-label">Название заявки</label>
-                        <input type="text" class="form-control" id="address" placeholder="Введите название заявки" value="{{ position }}" required>
+                        <label for="title" class="form-label">Название заявки</label>
+                        <input type="text" class="form-control" id="title" placeholder="Введите название заявки" value="{{ title }}" required>
                         <div class="invalid-feedback">
                             Please enter your shipping address.
                         </div>
