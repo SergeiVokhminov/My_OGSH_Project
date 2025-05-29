@@ -10,7 +10,7 @@ from users.views import (
     UserListView,
     UserLoginView,
     UserRegisterView,
-    UserUpdateView, email_verification,
+    UserUpdateView, email_verification, RegistrationSuccessView,
 )
 
 app_name = UsersConfig.name
@@ -28,4 +28,6 @@ urlpatterns = [
     path("user/update/<int:pk>/", UserUpdateView.as_view(), name="user_update"),
     path("user/delete/<int:pk>/", UserDeleteView.as_view(), name="user_delete"),
     path("email_confirm/<str:token>/", email_verification, name="email_verification"),
+
+    path("register-success", RegistrationSuccessView.as_view(), name="register_success")
 ]
