@@ -9,7 +9,7 @@ from tasks.utils import TaskCounter
 
 
 class TaskInfoView(TemplateView):
-    """."""
+    """Контроллер страницы о задачах."""
 
     model = Task
     form_class = TaskUpdateForm
