@@ -1,6 +1,10 @@
+import secrets
+
+from django.conf import settings
 from django.contrib.auth.views import LoginView
-from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy
+from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse_lazy, reverse
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -92,10 +96,35 @@ class HomeView(TemplateView):
 class UserRegisterView(CreateView):
     """Контроллер регистрации профиля."""
 
-    model = User
+    # model = User
     form_class = UserRegisterForm
     template_name = "users/register.html"
     success_url = reverse_lazy("users:login")
+
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.is_active = False
+        token = secrets.token_hex(16)
+        user.token = token
+        user.save()
+        host = self.request.get_host()
+        url = f"http://{host}/email_confirm/{token}/"
+        send_mail(
+            subject="Подтверждение регистрации.",
+            message=f"Для активации Вашего аккаунта перейдите по ссылке: {url}",
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[user.email,],
+        )
+        return super().form_valid(form)
+
+
+def email_verification(request, token):
+    """Функция для верификации почты."""
+
+    user = get_object_or_404(User, token=token)
+    user.is_active = True
+    user.save()
+    return redirect(reverse("users:login"))
 
 
 class UserLoginView(LoginView):
