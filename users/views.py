@@ -99,7 +99,7 @@ class UserRegisterView(CreateView):
     # model = User
     form_class = UserRegisterForm
     template_name = "users/register.html"
-    success_url = reverse_lazy("users:login")
+    success_url = reverse_lazy("users:register_success")
 
     def form_valid(self, form):
         user = form.save(commit=False)
@@ -110,8 +110,8 @@ class UserRegisterView(CreateView):
         host = self.request.get_host()
         url = f"http://{host}/email_confirm/{token}/"
         send_mail(
-            subject="Подтверждение регистрации.",
-            message=f"Для активации Вашего аккаунта перейдите по ссылке: {url}",
+            subject="Подтверждение регистрации на сайте.",
+            message=f"Привет {user.first_name}! Для активации Вашего аккаунта перейдите по ссылке: {url}",
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[user.email,],
         )
@@ -125,6 +125,10 @@ def email_verification(request, token):
     user.is_active = True
     user.save()
     return redirect(reverse("users:login"))
+
+
+class RegistrationSuccessView(TemplateView):
+    template_name = "users/register_success.html"
 
 
 class UserLoginView(LoginView):
