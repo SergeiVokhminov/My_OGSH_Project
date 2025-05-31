@@ -2,31 +2,41 @@
 {% load my_tags %}
 {% block title %}Список заявок{% endblock %}
 {% block content %}
-<div class="row">
-    {% for applic in object_list %}
-    <div class="col-md-6">
-        <div class="modal modal-sheet position-static d-block" tabindex="-1" role="dialog" id="modalSign">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content rounded-4 shadow">
-                    <div class="modal-header p-4 pb-5 border-bottom-0 d-flex justify-content-center">
-                        <div class="card-body">
-                            <h4 class="my-0 font-weight-normal mt-3 text-center">Информация о заявки №{{applic.id}}:</h4>
-                            <hr class="my-4">
-                            <h4 class="my-0 font-weight-normal mt-3">Название: {{applic.title}}</h4>
-                            <hr class="my-4">
-                            <h4 class="my-0 font-weight-normal mt-3">Дата исполнения: {{applic.deadline}}</h4>
-                            <hr class="my-4">
-                            <h4 class="my-0 font-weight-normal mt-3">Время начала мероприятия: {{applic.times}}</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 text-center">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Название заявки</th>
+                <th scope="col">Отдел</th>
+                <th scope="col">Дата исполнения</th>
+                <th scope="col">Время исполнения</th>
+                <th scope="col">Детали</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for application in object_list %}
+            <tr>
+                <th scope="row">{{ application.id }}</th>
+                <td>{{ application.title }}</td>
+                <td>{{ application.department }}</td>
+                <td>{{ application.deadline }}</td>
+                <td>{{ application.times }}</td>
+                <td><a class="link" href="{% url 'applications:applications_detail' application.pk %}">Подробнее</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">Нет заявок для отображения.</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
-    {% endfor %}
 </div>
 
 <section class="text-center container">
+    <a href="{% url 'applications:application_create' %}" class="btn btn-secondary my-2">Добавить заявку</a>
     <a href="{% url 'applications:application_info' %}" class="btn btn-secondary my-2">Назад</a>
     <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">На главную</a>
 </section>
