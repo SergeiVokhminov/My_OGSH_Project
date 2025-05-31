@@ -86,6 +86,8 @@
                 <a class="link" href="{% url 'tasks:task_detail' task.pk %}">Посмотреть</a>
             </li>
         </ul>
+        {% empty %}
+        <h4>Задачи отсутствуют</h4>
         {% endfor %}
 
     </div>
@@ -93,8 +95,9 @@
 </div>
 
 <section class="text-center container">
-    <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">На главную</a>
     <a href="{% url 'tasks:task_create' %}" class="btn btn-secondary my-2">Добавить задачу</a>
+    <a href="{% url 'tasks:task_info' %}" class="btn btn-secondary my-2">Назад</a>
+    <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">На главную</a>
 </section>
 
 </section>
