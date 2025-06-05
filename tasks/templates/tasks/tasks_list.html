@@ -3,96 +3,40 @@
 {% block title %}Список задач{% endblock %}
 {% block content %}
 <section class="container">
-<div class="row g-5">
-
-    <div class="col-md-5 col-lg-6 order-md-last">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-primary-centre">Краткая информация</span>
-        </h4>
-
-        <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">Количество задач:</h6>
-                </div>
-                <span class="text-body-secondary-center">{{ task_count }}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">Свободных:</h6>
-                </div>
-                <a class="link" href="#">{{ free_task_count }}</a>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">В работе:</h6>
-                </div>
-                <a class="link" href="#">{{ start_task_count }}</a>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">Завершено:</h6>
-                </div>
-                <a class="link" href="#">{{ done_task_count }}</a>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div class="text-success">
-                    <h6 class="my-0">Отменено:</h6>
-                </div>
-                <a class="link" href="#">{{ closed_task_count }}</a>
-            </li>
-        </ul>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 text-center">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Название задачи</th>
+                <th scope="col">Исполнитель</th>
+                <th scope="col">Статус задачи</th>
+                <th scope="col">Срок исполнения</th>
+                <th scope="col">Детали</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for task in object_list %}
+            <tr>
+                <th scope="row">{{ task.id }}</th>
+                <td>{{ task.title }}</td>
+                <td>
+                    {% for user in task.employee.all %}
+                    <li>{{ user.get_full_name|default:user.username }}</li>
+                    {% endfor %}
+                </td>
+                <td>{{ task.get_status_display }}</td>
+                <td>{{ task.deadline }}</td>
+                <td><a class="link" href="{% url 'tasks:task_detail' task.pk %}">Подробнее</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">Нет задач для отображения.</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
-
-    <div class="col-md-7 col-lg-6">
-        <h4 class="mb-3">Список задач</h4>
-
-        {% for task in object_list %}
-            <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">Название:</h6>
-                </div>
-                <span class="text-body-secondary-center">{{ task.title }}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">Исполнитель:</h6>
-                </div>
-                <span class="text-body-secondary-center">{{ task.employee | default:"Не выбран" }}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">Строк исполнения:</h6>
-                </div>
-                <span class="text-body-secondary-center">{{ task.deadline | default:"Не выбран" }}</span>
-            </li>
-                <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">Статус:</h6>
-                </div>
-                <span class="text-body-secondary-center">{{ task.get_status_display }}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div class="text-success">
-                    <h6 class="my-0">Создатель:</h6>
-                </div>
-                <span class="text-success-center">{{ task.owner }}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div class="text-success">
-                    <h6 class="my-0">Подробнее:</h6>
-                </div>
-                <a class="link" href="{% url 'tasks:task_detail' task.pk %}">Посмотреть</a>
-            </li>
-        </ul>
-        {% empty %}
-        <h4>Задачи отсутствуют</h4>
-        {% endfor %}
-
-    </div>
-
-</div>
 
 <section class="text-center container">
     <a href="{% url 'tasks:task_create' %}" class="btn btn-secondary my-2">Добавить задачу</a>
