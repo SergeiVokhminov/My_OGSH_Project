@@ -36,8 +36,9 @@ class Task(models.Model):
         null=True,
         blank=True,
     )
-    employee = models.ManyToManyField(
+    employee = models.ForeignKey(
         User,
+        on_delete=models.CASCADE,
         related_name="tasks",
         verbose_name="Исполнители",
         default="Не выбран",
