@@ -39,10 +39,16 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ["email", "password1", "password2"]
+        fields = ["last_name", "first_name", "email", "password1", "password2"]
 
     def __init__(self, *args, **kwargs):
         super(UserRegisterForm, self).__init__(*args, **kwargs)
+        self.fields["last_name"].widget.attrs.update(
+            {"class": "form-control", "placeholder": "Введите Фамилию"}
+        )
+        self.fields["first_name"].widget.attrs.update(
+            {"class": "form-control", "placeholder": "Введите Имя"}
+        )
         self.fields["email"].widget.attrs.update(
             {"class": "form-control", "placeholder": "Введите адрес электронной почты"}
         )
