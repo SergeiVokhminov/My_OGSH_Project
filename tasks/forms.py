@@ -17,6 +17,9 @@ class TaskUpdateForm(forms.ModelForm):
             "status",
             "deadline",
         )
+        widgets = {
+            "deadline": forms.SelectDateWidget(),
+        }
 
     def __init__(self, *args, **kwargs):
         super(TaskUpdateForm, self).__init__(*args, **kwargs)
@@ -37,5 +40,5 @@ class TaskUpdateForm(forms.ModelForm):
             {"class": "form-control", "placeholder": "Статус задачи"}
         )
         self.fields["deadline"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Введите срок исполнения"}
+            {"class": "form-control mb-3"}
         )
