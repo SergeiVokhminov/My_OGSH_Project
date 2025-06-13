@@ -20,11 +20,7 @@
             <tr>
                 <th scope="row">{{ task.id }}</th>
                 <td>{{ task.title }}</td>
-                <td>
-                    {% for user in task.employee.all %}
-                    <li>{{ user.get_full_name|default:user.username }}</li>
-                    {% endfor %}
-                </td>
+                <td>{{ task.employee.last_name }}</td>
                 <td>{{ task.get_status_display }}</td>
                 <td>{{ task.deadline }}</td>
                 <td><a class="link" href="{% url 'tasks:task_detail' task.pk %}">Подробнее</a></td>
