@@ -12,7 +12,7 @@ class UserAdmin(admin.ModelAdmin):
         "email",
         "last_name",
         "first_name",
-        "last_login",
+        "position",
         "is_active",
     )
     list_filter = ("id", "last_name")
