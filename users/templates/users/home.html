@@ -77,6 +77,11 @@
     {% if user.is_authenticated %}
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
+           href="{% url 'users:user_info' user.pk %}" role="button">Личный кабинет
+        </a>
+    </div>
+    <div class="col">
+        <a class="btn btn-success w-100" style="text-align: center"
            href="{% url 'tasks:task_info' %}" role="button">Информация о задачах
         </a>
     </div>
@@ -88,11 +93,6 @@
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
            href="{% url 'users:user_list' %}" role="button">Информация о сотрудниках
-        </a>
-    </div>
-    <div class="col">
-        <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'users:user_info' user.pk %}" role="button">Личный кабинет
         </a>
     </div>
 
