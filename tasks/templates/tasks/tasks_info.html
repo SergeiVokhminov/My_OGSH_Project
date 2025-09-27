@@ -5,6 +5,7 @@
 <section class="py-4 text-center container">
     <div class="row g-5">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 text-center container">
+            {% if user.is_superuser %}
             <div class="col-md-3 text-center container">
                 <div class="card shadow-sm">
                     <a class="btn btn-primary volumetric-btn btn-lg" href="{% url 'tasks:task_create' %}" role="button">
@@ -12,6 +13,7 @@
                     </a>
                 </div>
             </div>
+            {% endif %}
             <div class="col-md-3 text-center container">
                 <div class="card shadow-sm">
                     <a class="btn btn-primary volumetric-btn btn-lg" href="{% url 'tasks:task_list' %}" role="button">

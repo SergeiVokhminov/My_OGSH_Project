@@ -35,9 +35,11 @@
     </div>
 
 <section class="text-center container">
-    <a href="{% url 'tasks:task_create' %}" class="btn btn-secondary my-2">Добавить задачу</a>
-    <a href="{% url 'tasks:task_info' %}" class="btn btn-secondary my-2">Назад</a>
-    <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">На главную</a>
+    {% if user.is_superuser %}
+        <a href="{% url 'tasks:task_create' %}" class="btn btn-secondary my-2">Добавить задачу</a>
+    {% endif %}
+        <a href="{% url 'tasks:task_info' %}" class="btn btn-secondary my-2">Назад</a>
+        <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">На главную</a>
 </section>
 
 </section>
