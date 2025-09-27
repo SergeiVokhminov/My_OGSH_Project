@@ -36,8 +36,10 @@
 </div>
 
 <section class="text-center container">
-    <a href="{% url 'applications:application_create' %}" class="btn btn-secondary my-2">Добавить заявку</a>
-    <a href="{% url 'applications:application_info' %}" class="btn btn-secondary my-2">Назад</a>
-    <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">На главную</a>
+    {% if user.is_superuser %}
+        <a href="{% url 'applications:application_create' %}" class="btn btn-secondary my-2">Добавить заявку</a>
+    {% endif %}
+        <a href="{% url 'applications:application_info' %}" class="btn btn-secondary my-2">Назад</a>
+        <a href="{% url 'users:home' %}" class="btn btn-secondary my-2">На главную</a>
 </section>
 {% endblock %}
