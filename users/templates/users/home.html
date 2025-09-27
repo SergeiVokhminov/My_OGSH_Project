@@ -7,7 +7,7 @@
     <h1 class="fw-light">{{ greeting }}, {{ user.first_name | default:user.email }}!</h1>
     {% elif user.is_authenticated %}
         <h1 class="fw-light">Привет, {{ user.first_name | default:user.email }}</h1>
-        <h1 class="fw-light">Проверь свои задачи.</h1>
+        <h1 class="fw-light">Проверь свои задачи и заявки.</h1>
     {% else %}
         <h1 class="display-6">Сервис Управления Задачами Отдела</h1>
         <p class="lead">С. У. З. О. - Это отличное место для управления задачами Отдела.
