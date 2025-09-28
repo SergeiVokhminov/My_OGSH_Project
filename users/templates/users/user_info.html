@@ -2,51 +2,59 @@
 {% load my_tags %}
 {% block title %}Личный кабинет{% endblock %}
 {% block content %}
-<div class="container">
-    <div class="row g-5">
-        <div class="col-md-5">
-            <div class="modal modal-sheet position-static d-block" tabindex="-1" role="dialog" id="modalSignin">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content rounded-4 shadow">
-                        <div class="modal-header p-4 pb-4 border-bottom-0 d-flex justify-content-center">
-                            <div class="card-body">
-                                <img src="{{ object.avatar | media_filter }}" width="100%" height="250">
-                                <h4 class="my-0 font-weight-normal mt-3">Фамилия: {{ object.last_name }}</h4>
-                                <h4 class="my-0 font-weight-normal mt-3">Имя: {{ object.first_name }}</h4>
-                                <h4 class="my-0 font-weight-normal mt-3">Должность: {{object.position}}</h4>
-                                <h4 class="my-0 font-weight-normal mt-3">Электронная почта: {{object.email}}</h4>
-                                <h4 class="my-0 font-weight-normal mt-3">Телефон: {{ object.phone_number | default:"Не указан" }}</h4>
-                                <div class="my-0 font-weight-normal mt-3 text-center">
-                                    <a href="{% url 'users:user_detail' user.pk %}" class="btn btn-secondary my-2">Подроднее</a>
-                                </div>
-                            </div>
-                        </div>
+<div class="container py-3">
+    <main>
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                    <div class="card-header py-3 text-bg-primary border-primary">
+                        <h4 class="my-0 fw-normal">Личная информация</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">Данные</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Описание Ваших личных данных</li>
+                        </ul>
+                        <a href="{% url 'users:user_detail' user.pk %}" class="w-100 btn btn-lg btn-primary">
+                            Подродная информация
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                    <div class="card-header py-3 text-bg-primary border-primary">
+                        <h4 class="my-0 fw-normal">Планы работ на месяц</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">Планы</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Описание работ сотрудников участков на месяц</li>
+                        </ul>
+                        <a href="{% url 'tasks:task_list' %}" class="w-100 btn btn-lg btn-primary">
+                            Подродная информация
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                    <div class="card-header py-3 text-bg-primary border-primary">
+                        <h4 class="my-0 fw-normal">Пятничный отчет</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">Отчет</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Описание работоспособности оборудования перед выходными</li>
+                        </ul>
+                        <a href="{% url 'tasks:task_list' %}" class="w-100 btn btn-lg btn-primary">
+                            Подродная информация
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="modal modal-sheet position-static d-block" tabindex="-1" role="dialog" id="modalSign">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content rounded-4 shadow">
-                        <div class="modal-header p-4 pb-4 border-bottom-0 d-flex justify-content-center">
-                            <div class="card-body">
-                                <h4 class="my-0 font-weight-normal mt-3 text-center">Информация о задачах:</h4>
-                                <hr class="my-4">
-                                <h4 class="my-0 font-weight-normal mt-3">Общее количество: {{task_count}}</h4>
-                                <h4 class="my-0 font-weight-normal mt-3">Свободных: {{free_task_count}}</h4>
-                                <h4 class="my-0 font-weight-normal mt-3">В работе: {{start_task_count}}</h4>
-                                <h4 class="my-0 font-weight-normal mt-3">Завершенных: {{done_task_count}}</h4>
-                                <div class="mt-3 text-center">
-                                    <a href="{% url 'tasks:task_list' %}" class="btn btn-secondary my-2">Подроднее</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </main>
 </div>
 
 <section class="text-center container">
