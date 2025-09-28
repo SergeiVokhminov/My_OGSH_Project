@@ -52,7 +52,7 @@ class Task(models.Model):
         blank=True,
     )
     deadline = models.DateField(
-        verbose_name="Строк исполнения",
+        verbose_name="Срок исполнения",
         null=True,
         blank=True,
     )
