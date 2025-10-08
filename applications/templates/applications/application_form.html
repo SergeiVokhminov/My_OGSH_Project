@@ -2,7 +2,7 @@
 {% load my_tags %}
 {% block title %}Создание/Изменение заявки{% endblock %}
 {% block content %}
-<div class="container">
+<div class="container text-white">
     <h1 class="mb-4">
         {% if task %}
         Форма изменения заявки
@@ -22,15 +22,15 @@
             </div>
         {% endfor %}
         <section class="py-5 text-center container">
-        <button class="btn btn-primary" type="submit">
-            {% if task %}
+            <button class="btn btn-primary" type="submit">
+                {% if task %}
                 Сохранить
-            {% else %}
+                {% else %}
                 Создать
-            {% endif %}
-        </button>
-        <a class="btn btn-secondary" href="{% url 'applications:application_info' %}">Отмена</a>
-        <a class="btn btn-secondary" href="{% url 'users:home' %}">На главную</a>
+                {% endif %}
+            </button>
+            <a class="btn btn-secondary" href="{% url 'applications:application_info' %}">Отмена</a>
+            <a class="btn btn-secondary" href="{% url 'users:home' %}">На главную</a>
         </section>
     </form>
 </div>
