@@ -2,7 +2,7 @@
 {% load my_tags %}
 {% block title %}Главная страница{% endblock %}
 {% block content %}
-<section class="text-center container">
+<section class="text-center container text-white">
     {% if user.is_superuser %}
     <h1 class="fw-light">{{ greeting }}, {{ user.first_name | default:user.email }}!</h1>
     {% elif user.is_authenticated %}
@@ -16,13 +16,13 @@
         </p>
     {% endif %}
 </section>
-<hr class="my-4">
+<hr class="my-4 text-white">
 
 {% if user.is_superuser %}
-<div class="text-center container">
+<div class="text-center container text-white">
     <h3 class="fw-light">Общая информация по Отделу на сегодня</h3> <!-- Добавить информацию по какому Отделу информация -->
 </div>
-<section class="py-3 text-center container">
+<section class="py-3 text-center container text-white">
     <div class="row g-3">
         <div class="col-sm-2">
             <label for="date_application" class="form-label">Дата:</label>
@@ -70,7 +70,7 @@
         </div>
     </div>
 </section>
-<hr class="my-4">
+<hr class="my-4 text-white">
 {% endif %}
 
 <section class="py-5 text-center container">
@@ -131,6 +131,6 @@
 
 </div>
 </section>
-<hr class="my-4">
+<hr class="my-4 text-white">
 
 {% endblock %}
