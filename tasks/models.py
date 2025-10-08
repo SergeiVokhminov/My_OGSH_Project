@@ -42,6 +42,7 @@ class Task(models.Model):
         related_name="tasks",
         verbose_name="Исполнители",
         default="Не выбран",
+        null=True,
         blank=True,
     )
     status = models.CharField(
