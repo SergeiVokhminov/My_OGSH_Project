@@ -85,6 +85,9 @@ class UserUpdateForm(forms.ModelForm):
             "address",
             "avatar",
         )
+        widgets = {
+            'condition': forms.Select(attrs={'class': 'form-select'}),  # Bootstrap стиль
+        }
 
     def __init__(self, *args, **kwargs):
         super(UserUpdateForm, self).__init__(*args, **kwargs)
