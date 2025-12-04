@@ -5,6 +5,26 @@
 <section class="text-center container text-white">
     {% if user.is_superuser %}
     <h1 class="fw-light">{{ greeting }}, {{ user.first_name | default:user.email }}!</h1>
+    <section class="py-3 text-center container text-white">
+        <div class="d-flex justify-content-center gap-3">
+            <div class="col-sm-2">
+                <label for="date_application" class="form-label">Дата:</label>
+                {% now "d.m.Y" as current_date %}
+                <div class="form-control" id="date_application" style="text-align: center;">{{ current_date }}</div>
+                <div class="invalid-feedback">
+                    Valid first name is required.
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <label for="time_application" class="form-label">Время:</label>
+                {% now "H:i" as current_time %}
+                <div class="form-control" id="time_application" style="text-align: center;">{{ current_time }}</div>
+                <div class="invalid-feedback">
+                    Valid first name is required.
+                </div>
+            </div>
+        </div>
+    </section>
     {% elif user.is_authenticated %}
         <h1 class="fw-light">Привет, {{ user.first_name | default:user.email }}</h1>
             <hr class="my-4">
@@ -20,26 +40,10 @@
 
 {% if user.is_superuser %}
 <div class="text-center container text-white">
-    <h3 class="fw-light">Общая информация по Отделу</h3> <!-- Добавить информацию по какому Отделу информация -->
+    <h3 class="fw-light">Общая информация по Отделу на {{ current_date }} года.</h3> <!-- Добавить информацию по какому Отделу информация -->
 </div>
 <section class="py-3 text-center container text-white">
-    <div class="row g-3">
-        <div class="col-sm-2">
-            <label for="date_application" class="form-label">Дата:</label>
-                {% now "d.m.Y" as current_date %}
-            <div class="form-control" id="date_application" style="text-align: center;">{{ current_date }}</div>
-            <div class="invalid-feedback">
-                Valid first name is required.
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <label for="time_application" class="form-label">Время:</label>
-            {% now "H:i" as current_time %}
-            <div class="form-control" id="time_application" style="text-align: center;">{{ current_time }}</div>
-            <div class="invalid-feedback">
-                Valid first name is required.
-            </div>
-        </div>
+    <div class="d-flex justify-content-center gap-3">
         <div class="col-sm-2">
             <label for="employee" class="form-label">Сотрудников на работе:</label>
             <div class="form-control" id="employee" style="text-align: center;">{{ user_at_work_count }}</div>
