@@ -26,7 +26,7 @@
         </div>
     </section>
     {% elif user.is_authenticated %}
-        <h1 class="fw-light">Привет, {{ user.first_name | default:user.email }}</h1>
+        <h1 class="fw-light">{{ greeting }}, {{ user.first_name | default:user.email }}</h1>
             <hr class="my-4">
         <h1 class="fw-light">Проверь свои задачи и заявки.</h1>
     {% else %}
@@ -82,7 +82,7 @@
     {% if user.is_authenticated %}
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'users:user_info' user.pk %}" role="button">Личный кабинет
+           href="#" role="button">Мероприятия в здании Главного штаба
         </a>
     </div>
     <div class="col">
@@ -100,7 +100,11 @@
            href="{% url 'users:user_list' %}" role="button">Информация о сотрудниках
         </a>
     </div>
-
+    <div class="col">
+        <a class="btn btn-success w-100" style="text-align: center"
+           href="{% url 'users:user_info' user.pk %}" role="button">Личный кабинет
+        </a>
+    </div>
     {% if user.is_superuser %}
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
