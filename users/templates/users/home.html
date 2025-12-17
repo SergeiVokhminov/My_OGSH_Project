@@ -40,34 +40,44 @@
 
 {% if user.is_superuser %}
 <div class="text-center container text-white">
-    <h3 class="fw-light">Общая информация по Отделу на {{ current_date }} года.</h3> <!-- Добавить информацию по какому Отделу информация -->
+    <h3 class="fw-light">
+        Общая информация по Отделу на {{current_date}} года. <!-- Добавить информацию по какому Отделу информация -->
+    </h3>
 </div>
 <section class="py-3 text-center container text-white">
     <div class="d-flex justify-content-center gap-3">
         <div class="col-sm-2">
             <label for="employee" class="form-label">Сотрудников на работе:</label>
-            <div class="form-control" id="employee" style="text-align: center;">{{ user_at_work_count }}</div>
+            <div class="form-control" id="employee" style="text-align: center;">
+                {{ user_at_work_count }}
+            </div>
             <div class="invalid-feedback">
                 Valid first name is required.
             </div>
         </div>
         <div class="col-sm-2">
             <label for="task_count_start" class="form-label">Задач в работе:</label>
-            <div class="form-control" id="task_count_start" style="text-align: center;">{{ start_task_count }}</div>
+            <div class="form-control" id="task_count_start" style="text-align: center;">
+                {{ start_task_count }}
+            </div>
             <div class="invalid-feedback">
                 Valid first name is required.
             </div>
         </div>
         <div class="col-sm-2">
             <label for="task_count_free" class="form-label">Свободных задач:</label>
-            <div class="form-control" id="task_count_free" style="text-align: center;">{{ free_task_count }}</div>
+            <div class="form-control" id="task_count_free" style="text-align: center;">
+                {{ free_task_count }}
+            </div>
             <div class="invalid-feedback">
                 Valid first name is required.
             </div>
         </div>
         <div class="col-sm-2">
             <label for="application_count_work" class="form-label">Заявок в работе:</label>
-            <div class="form-control" id="application_count_work" style="text-align: center;">{{ application_count }}</div>
+            <div class="form-control" id="application_count_work" style="text-align: center;">
+                {{ application_count }}
+            </div>
             <div class="invalid-feedback">
                 Valid first name is required.
             </div>
