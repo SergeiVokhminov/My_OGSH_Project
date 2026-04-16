@@ -10,9 +10,11 @@ urlpatterns = [
     path("tasks/", include("tasks.urls"), name="task"),
     path("employees/", include("employees.urls"), name="employee"),
     path("departments/", include("departments.urls"), name="department"),
+    path("blogs/", include("blogs.urls"), name="blog"),
+
     # path("applications/", include("applications.urls"), name="application"),
     # path("mailing/", include("mailing.urls"), name="mailing"),
-    # path("blogs/", include("blogs.urls"), name="blog"),
+
 
 ]
 
