@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "users",
-    # "tasks",
+    "tasks",
     # "applications",
     # "mailing",
     # "departments",
