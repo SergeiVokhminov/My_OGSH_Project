@@ -9,10 +9,11 @@ urlpatterns = [
     path("users/", include("users.urls"), name="user"),
     path("tasks/", include("tasks.urls"), name="task"),
     path("employees/", include("employees.urls"), name="employee"),
+    path("departments/", include("departments.urls"), name="department"),
     # path("applications/", include("applications.urls"), name="application"),
     # path("mailing/", include("mailing.urls"), name="mailing"),
     # path("blogs/", include("blogs.urls"), name="blog"),
-    # path("departments/", include("departments.urls"), name="department"),
+
 ]
 
 if settings.DEBUG:
