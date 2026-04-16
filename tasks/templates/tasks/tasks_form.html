@@ -1,5 +1,4 @@
-{% extends 'users/base.html' %}
-{% load my_tags %}
+{% extends 'home_page/base.html' %}
 {% block title %}Создание/Изменение задачи{% endblock %}
 {% block content %}
 <div class="container text-white">
@@ -30,7 +29,7 @@
                 {% endif %}
             </button>
             <a class="btn btn-secondary" href="{% url 'tasks:task_info' %}">Отмена</a>
-            <a class="btn btn-secondary" href="{% url 'users:home' %}">На главную</a>
+            <a class="btn btn-secondary" href="{% url 'home_page:home' %}">На главную</a>
         </section>
     </form>
 </div>

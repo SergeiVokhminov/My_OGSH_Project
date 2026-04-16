@@ -1,5 +1,4 @@
-{% extends 'users/base.html' %}
-{% load my_tags %}
+{% extends 'home_page/base.html' %}
 {% block title %}Информация о задачах{% endblock %}
 {% block content %}
 <section class="py-4 text-center container">
@@ -23,7 +22,7 @@
             </div>
             <div class="col-md-3 text-center container">
                 <div class="card shadow-sm">
-                    <a class="btn btn-primary volumetric-btn btn-lg" href="{% url 'users:home' %}" role="button">
+                    <a class="btn btn-primary volumetric-btn btn-lg" href="{% url 'home_page:home' %}" role="button">
                         На главную
                     </a>
                 </div>
