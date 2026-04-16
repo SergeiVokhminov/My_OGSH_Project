@@ -4,6 +4,17 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from users.models import User
 
 
+class UserForm(forms.ModelForm):
+    """Форма представления пользователя."""
+
+    class Meta:
+        model = User
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+
+
 class UserAuthForm(AuthenticationForm):
     """Форма входа пользователя на сайт."""
 
