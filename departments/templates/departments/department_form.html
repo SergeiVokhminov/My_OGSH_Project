@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container">
     <h1 class="mb-4">
-        {% if task %}
+        {% if department %}
         Форма изменения информации об Отделе
         {% else %}
         Форма добавления информации об Отделе
@@ -23,7 +23,7 @@
         {% endfor %}
         <section class="py-5 text-center container">
         <button class="btn btn-primary" type="submit">
-            {% if task %}
+            {% if department %}
                 Сохранить
             {% else %}
                 Создать
