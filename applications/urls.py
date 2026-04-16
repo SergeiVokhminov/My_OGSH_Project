@@ -1,14 +1,9 @@
 from django.urls import path
 
 from applications.apps import ApplicationsConfig
-from applications.views import (
-    ApplicationCreateView,
-    ApplicationDeleteView,
-    ApplicationDetailsView,
-    ApplicationHomeView,
-    ApplicationListView,
-    ApplicationUpdateView,
-)
+from applications.views import (ApplicationCreateView, ApplicationDeleteView,
+                                ApplicationDetailsView, ApplicationHomeView,
+                                ApplicationListView, ApplicationUpdateView)
 
 app_name = ApplicationsConfig.name
 

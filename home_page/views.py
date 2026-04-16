@@ -1,6 +1,4 @@
-from django.views.generic import (
-    TemplateView,
-)
+from django.views.generic import TemplateView
 
 # from applications.utils import ApplicationCounter
 # from employees.utils import EmployeeCounter

@@ -4,11 +4,8 @@ from django.conf import settings
 from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse_lazy, reverse
-from django.views.generic import (
-    CreateView,
-    TemplateView,
-)
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView, TemplateView
 
 from users.forms import UserAuthForm, UserRegisterForm
 from users.models import User

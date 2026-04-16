@@ -1,14 +1,9 @@
 from django.urls import path
 
 from departments.apps import DepartmentsConfig
-from departments.views import (
-    DepartmentListView,
-    DepartmentInfoView,
-    DepartmentCreateView,
-    DepartmentUpdateView,
-    DepartmentDetailsView,
-    DepartmentDeleteView,
-)
+from departments.views import (DepartmentCreateView, DepartmentDeleteView,
+                               DepartmentDetailsView, DepartmentInfoView,
+                               DepartmentListView, DepartmentUpdateView)
 
 app_name = DepartmentsConfig.name
 

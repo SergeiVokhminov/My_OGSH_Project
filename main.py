@@ -1,5 +1,5 @@
-import socket
 import platform
+import socket
 
 
 def get_first_local_ip_mac():

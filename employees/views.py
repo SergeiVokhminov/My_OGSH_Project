@@ -1,15 +1,10 @@
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import (
-    CreateView,
-    DeleteView,
-    DetailView,
-    ListView,
-    UpdateView,
-)
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
 
-from employees.models import Employee
 from employees.forms import EmployeeForm, EmployeeUpdateForm
+from employees.models import Employee
 from employees.utils import EmployeeCounter
 from tasks.utils import TaskCounter
 
