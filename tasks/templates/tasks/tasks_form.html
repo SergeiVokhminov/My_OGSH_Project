@@ -1,7 +1,8 @@
 {% extends 'home_page/base.html' %}
 {% block title %}Создание/Изменение задачи{% endblock %}
 {% block content %}
-<div class="container text-white">
+<div class="modal-content rounded-4 shadow">
+<div class="container text-center-black">
     <h1 class="mb-4">
         {% if task %}
         Форма изменения задачи
@@ -33,4 +34,6 @@
         </section>
     </form>
 </div>
+</div>
+
 {% endblock %}
