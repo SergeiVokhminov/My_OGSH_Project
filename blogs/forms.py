@@ -1,5 +1,6 @@
 from django import forms
 from blogs.models import Blog
+from users.models import User
 
 
 class BlogForm(forms.ModelForm):
@@ -7,10 +8,7 @@ class BlogForm(forms.ModelForm):
 
     class Meta:
         model = Blog
-        exclude = ("created_at", "publication_sign", "views")
+        fields = "__all__"
 
     def __init__(self, *args, **kwargs):
         super(BlogForm, self).__init__(*args, **kwargs)
-        self.fields['title'].widget.attrs.update({'class': 'form-control'})
-        self.fields['content'].widget.attrs.update({'class': 'form-control'})
-        self.fields['image'].widget.attrs.update({'class': 'form-control'})

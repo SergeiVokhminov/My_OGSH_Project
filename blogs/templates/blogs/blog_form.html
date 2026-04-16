@@ -1,0 +1,37 @@
+{% extends "home_page/base.html" %}
+{% load my_tags %}
+{% block title %}Создание/Изменение блога{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">
+        {% if blog %}
+        Форма изменения блога
+        {% else %}
+        Форма добавления блога
+        {% endif %}
+    </h1>
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <section class="py-5 text-center container">
+        <button class="btn btn-primary" type="submit">
+            {% if blog %}
+                Сохранить
+            {% else %}
+                Создать
+            {% endif %}
+        </button>
+        <a class="btn btn-secondary" href="{% url 'blogs:blog_info' %}">Отмена</a>
+        <a class="btn btn-secondary" href="{% url 'home_page:home' %}">На главную</a>
+        </section>
+    </form>
+</div>
+{% endblock %}
