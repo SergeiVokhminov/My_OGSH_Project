@@ -1,5 +1,6 @@
 import uuid
 
+from django.conf import settings
 from django.db import models
 
 from employees.constants import CONDITION_CHOICES
@@ -16,7 +17,7 @@ class Employee(models.Model):
         blank=True,
     )
     user_account = models.OneToOneField(
-        'auth.User',
+        settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
