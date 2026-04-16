@@ -18,9 +18,21 @@ class EmployeeCreateView(CreateView):
     """Контроллер добавления пользователя на сайт."""
 
     model = Employee
-    form_class = EmployeeForm
+    form_class = EmployeeUpdateForm
     template_name = "employees/employee_form.html"
     success_url = reverse_lazy("employees:employee_list.html")
+
+    def form_valid(self, form):
+        employee = form.save()
+        user = self.request.user
+        employee.owner = user
+        employee.save()
+        return super().form_valid(form)
+
+    def test_func(self):
+        """Проверка, является ли пользователь суперпользователем."""
+
+        return self.request.user.is_superuser
 
 
 class EmployeeInfoView(UpdateView):
