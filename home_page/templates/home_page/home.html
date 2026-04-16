@@ -107,7 +107,12 @@
             </div>
             <div class="col">
                 <a class="btn btn-success w-100" style="text-align: center"
-                   href="#" role="button">Информация о заявках
+                   href="{% url 'applications:application_info' %}" role="button">Информация о заявках
+                </a>
+            </div>
+            <div class="col">
+                <a class="btn btn-success w-100" style="text-align: center"
+                   href="{% url 'blogs:blog_info' %}" role="button">Блоги
                 </a>
             </div>
             <div class="col">
