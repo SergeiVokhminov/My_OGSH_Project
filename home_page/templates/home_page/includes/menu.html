@@ -21,8 +21,8 @@
                 {% endif %}
             </a>
             <ul class="dropdown-menu dropdown-menu-end text-small">
-                <li><a class="dropdown-item" href="#">Профиль</a></li>
-                <li><a class="dropdown-item" href="#">Блог</a></li>
+                <li><a class="dropdown-item" href="{% url 'employees:employee_list' %}">Профиль</a></li>
+                <li><a class="dropdown-item" href="{% url 'blogs:blog_list' %}">Блоги</a></li>
                 <li><a class="dropdown-item" href="#">Настройки</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
