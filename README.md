@@ -1,0 +1,92 @@
+# Проект на DJANGO - Сервис Управления Отделом
+
+## Описание.
+Создан проект по управлению Отделом c помощью Django. 
+Проект содержит приложения applications, blogs, config, departments, employees, home_page, mailing, tasks, users.
+
+## Папки, пакеты, приложения, шаблоны реализованные в проекте.
+1. приложения:
+   - applications;
+   - blogs;
+   - config - содержит настройки Django проекта;
+   - departments;
+   - employees;
+   - home_page;
+   - mailing;
+   - tasks;
+   - users.
+2. fixtures - файлы json;
+3. media - картинки для сайта.
+4. static - содержит css и js настройки для Bootstrap, а также статические images файлы;
+
+## Используемые зависимости.
+
+asgiref==3.11.1
+black==26.3.1
+certifi==2026.2.25
+charset-normalizer==3.4.7
+click==8.3.2
+coverage==7.13.5
+Django==6.0.4
+flake8==7.3.0
+gunicorn==25.3.0
+idna==3.11
+iniconfig==2.3.0
+isort==8.0.1
+librt==0.9.0
+mccabe==0.7.0
+mypy==1.20.1
+mypy_extensions==1.1.0
+numpy==2.4.4
+packaging==26.1
+pandas==3.0.2
+pathspec==1.0.4
+pillow==12.2.0
+pip-review==1.3.0
+platformdirs==4.9.6
+pluggy==1.6.0
+psycopg2-binary==2.9.11
+pycodestyle==2.14.0
+pyflakes==3.4.0
+Pygments==2.20.0
+pytest==9.0.3
+pytest-cov==7.1.0
+python-dateutil==2.9.0.post0
+python-dotenv==1.2.2
+pytokens==0.4.1
+pytz==2026.1.post1
+requests==2.33.1
+six==1.17.0
+sqlparse==0.5.5
+typing_extensions==4.15.0
+tzdata==2026.1
+urllib3==2.6.3
+
+## Установка
+
+1. Клонируйте репозиторий:
+'''
+git clone https://github.com/SergeiVokhminov/My_OGSH_Project.git
+'''
+
+2. Установите зависимости:
+```
+poetry install
+```
+или
+```
+pip install -r requirements.txt
+```
+
+## Тестирование:
+
+1.  тестирование пока не предусмотренно.
+
+## Использование модуля main.py для получения ip адреса компьютера:
+
+1. Откройте модуль
+2. Запустите if __name__ == "__main__"
+
+## Документация
+
+Для получения дополнительной информации обратитесь к [документации](README.md)
