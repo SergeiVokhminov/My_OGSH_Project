@@ -8,7 +8,11 @@ from users.models import User
 class TaskAdmin(admin.ModelAdmin):
     """Настройки отображения модели Task в админ-панели Django."""
 
-    list_display = ("id", "title", "parent_task", "status", "deadline")
+    list_display = (
+        "id",
+        "title",
+        "status",
+        "deadline")
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         # Исключаем администратора из списка исполнителей

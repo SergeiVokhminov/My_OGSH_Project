@@ -1,23 +1,12 @@
 from django.db import models
 
 from config import settings
+from tasks.constants import STATUS_CHOICES
 from users.models import User
 
 
 class Task(models.Model):
-    """Поля для модели задача."""
-
-    START_STATUS = "start"
-    DONE_STATUS = "done"
-    FREE_STATUS = "free"
-    CLOSED_STATUS = "closed"
-
-    STATUS_CHOICES = [
-        (START_STATUS, "К исполнению"),
-        (DONE_STATUS, "Выполнена"),
-        (FREE_STATUS, "Свободна"),
-        (CLOSED_STATUS, "Отменена"),
-    ]
+    """Поля для модели задачи."""
 
     title = models.CharField(
         max_length=250,

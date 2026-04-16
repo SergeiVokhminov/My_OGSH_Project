@@ -4,8 +4,18 @@ from tasks.models import Task
 from users.models import User
 
 
-class TaskUpdateForm(forms.ModelForm):
+class TaskForm(forms.ModelForm):
     """Форма для задачи."""
+
+    class Meta:
+        model = Task
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super(TaskForm, self).__init__(*args, **kwargs)
+
+class TaskUpdateForm(forms.ModelForm):
+    """Форма для обновления задачи."""
 
     class Meta:
         model = Task
