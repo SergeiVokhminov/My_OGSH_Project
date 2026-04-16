@@ -8,11 +8,11 @@ urlpatterns = [
     path("", include("home_page.urls"), name="home_page"),
     path("users/", include("users.urls"), name="user"),
     path("tasks/", include("tasks.urls"), name="task"),
+    path("employees/", include("employees.urls"), name="employee"),
     # path("applications/", include("applications.urls"), name="application"),
     # path("mailing/", include("mailing.urls"), name="mailing"),
     # path("blogs/", include("blogs.urls"), name="blog"),
     # path("departments/", include("departments.urls"), name="department"),
-    # path("home_page/", include("home_page.urls"), name="home_page"),
 ]
 
 if settings.DEBUG:

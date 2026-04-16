@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     # "mailing",
     # "departments",
     # "blogs",
-    # "employees",
+    "employees",
     "home_page",
 ]
 
