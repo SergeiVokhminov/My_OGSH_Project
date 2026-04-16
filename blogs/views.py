@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
@@ -56,11 +56,11 @@ class BlogListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         user = self.request.user
         if user.is_superuser:
-            return Blog.objects.all()  # Суперпользователь видит все задачи
+            return Blog.objects.all()  # Суперпользователь видит все блоги
         else:
             return Blog.objects.filter(
                 employee=user
-            )  # Обычный пользователь видит только свои задачи
+            )  # Обычный пользователь видит только свои блоги
 
 
 class BlogDetailsView(DetailView):
@@ -68,6 +68,12 @@ class BlogDetailsView(DetailView):
 
     model = Blog
     template_name = "blogs/blog_detail.html"
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        self.object.views += 1
+        self.object.save()
+        return self.object
 
 
 class BlogUpdateView(UpdateView):
@@ -77,6 +83,9 @@ class BlogUpdateView(UpdateView):
     form_class = BlogForm
     template_name = "blogs/blog_form.html"
     success_url = reverse_lazy("blogs:blog_list")
+
+    def get_success_url(self):
+        return reverse("blogs:blog_detail", args=[self.kwargs.get("pk")])
 
 
 class BlogDeleteView(DeleteView):
