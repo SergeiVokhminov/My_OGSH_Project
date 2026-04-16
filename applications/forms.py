@@ -3,6 +3,17 @@ from django import forms
 from applications.models import Application
 
 
+class ApplicationForm(forms.ModelForm):
+    """Форма для представления заявки."""
+
+    class Meta:
+        model = Application
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super(ApplicationForm, self).__init__(*args, **kwargs)
+
+
 class ApplicationUpdateForm(forms.ModelForm):
     """Форма для обновления заявки."""
 
