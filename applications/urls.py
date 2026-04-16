@@ -25,5 +25,4 @@ urlpatterns = [
     path(
         "delete/<int:pk>/", ApplicationDeleteView.as_view(), name="application_delete"
     ),
-    # проверка новых маршрутов
 ]
