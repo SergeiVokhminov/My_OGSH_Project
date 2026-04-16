@@ -14,7 +14,6 @@ from employees.views import (
 app_name = EmployeesConfig.name
 
 urlpatterns = [
-
     path("list/", EmployeeListView.as_view(), name="employee_list"),
     path("create/", EmployeeCreateView.as_view(), name="employee_create"),
     path("info/<int:pk>/", EmployeeInfoView.as_view(), name="employee_info"),

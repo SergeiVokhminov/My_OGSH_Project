@@ -32,7 +32,9 @@ class ApplicationListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         counter_application = ApplicationCounter()
-        context["application_count"] = counter_application.total()  # Считаем количество заявок
+        context["application_count"] = (
+            counter_application.total()
+        )  # Считаем количество заявок
 
         return context
 

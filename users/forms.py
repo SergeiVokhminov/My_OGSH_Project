@@ -56,6 +56,12 @@ class UserRegisterForm(UserCreationForm):
         """Проверка электронной почты."""
 
         email_address = self.cleaned_data.get("email")
-        if User.objects.filter(email=email_address).exclude(pk=self.instance.pk).exists():
-            raise forms.ValidationError("Этот адрес электронной почты уже зарегистрирован!")
+        if (
+            User.objects.filter(email=email_address)
+            .exclude(pk=self.instance.pk)
+            .exists()
+        ):
+            raise forms.ValidationError(
+                "Этот адрес электронной почты уже зарегистрирован!"
+            )
         return email_address

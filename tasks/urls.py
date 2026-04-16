@@ -6,7 +6,8 @@ from tasks.views import (
     TaskDetailsView,
     TaskListView,
     TasksDeleteView,
-    TaskUpdateView, TaskInfoView,
+    TaskUpdateView,
+    TaskInfoView,
 )
 
 app_name = TasksConfig.name

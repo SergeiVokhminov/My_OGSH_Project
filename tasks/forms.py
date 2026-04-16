@@ -14,6 +14,7 @@ class TaskForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(TaskForm, self).__init__(*args, **kwargs)
 
+
 class TaskUpdateForm(forms.ModelForm):
     """Форма для обновления задачи."""
 
@@ -49,6 +50,4 @@ class TaskUpdateForm(forms.ModelForm):
         self.fields["status"].widget.attrs.update(
             {"class": "form-control", "placeholder": "Статус задачи"}
         )
-        self.fields["deadline"].widget.attrs.update(
-            {"class": "form-control mb-3"}
-        )
+        self.fields["deadline"].widget.attrs.update({"class": "form-control mb-3"})

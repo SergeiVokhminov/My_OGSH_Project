@@ -21,12 +21,10 @@ class Employee(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name='employee_profile',
+        related_name="employee_profile",
         verbose_name="профиль сотрудника",
     )
-    email = models.EmailField(
-        unique=True, verbose_name="Электронная почта"
-    )
+    email = models.EmailField(unique=True, verbose_name="Электронная почта")
     first_name = models.CharField(
         max_length=50, verbose_name="Имя", blank=True, null=True
     )

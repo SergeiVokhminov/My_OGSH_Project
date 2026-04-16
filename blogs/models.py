@@ -5,9 +5,7 @@ class Blog(models.Model):
     """Поля для модели блога."""
 
     title = models.CharField(
-        max_length=100,
-        verbose_name="Заголовок",
-        help_text="Введите заголовок блога"
+        max_length=100, verbose_name="Заголовок", help_text="Введите заголовок блога"
     )
     content = models.TextField(
         verbose_name="Содержание блога",

@@ -14,6 +14,7 @@ class DepartmentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(DepartmentForm, self).__init__(*args, **kwargs)
 
+
 class DepartmentUpdateForm(forms.ModelForm):
     """Форма для обновления задачи."""
 
@@ -38,5 +39,8 @@ class DepartmentUpdateForm(forms.ModelForm):
             {"class": "form-control", "placeholder": "Введите номер телефона Отдела"}
         )
         self.fields["number_of_people"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Выберите количество работников Отдела"}
+            {
+                "class": "form-control",
+                "placeholder": "Выберите количество работников Отдела",
+            }
         )

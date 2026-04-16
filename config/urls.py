@@ -12,7 +12,6 @@ urlpatterns = [
     path("departments/", include("departments.urls"), name="department"),
     path("blogs/", include("blogs.urls"), name="blog"),
     path("applications/", include("applications.urls"), name="application"),
-
     # path("mailing/", include("mailing.urls"), name="mailing"),
 ]
 

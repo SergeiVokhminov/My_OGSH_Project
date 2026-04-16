@@ -24,15 +24,18 @@ class UserLoginView(LoginView):
         "home_page:home"
     )  # Указываем URL, на который будет перенаправлен пользователь после успешного входа
     redirect_authenticated_user = (
-        True
-    )  # Перенаправлять аутентифицированных пользователей
+        True  # Перенаправлять аутентифицированных пользователей
+    )
+
 
 class UserRegisterView(CreateView):
     """Контроллер регистрации профиля."""
 
     model = User  # Указываем какую модель использовать
     form_class = UserRegisterForm  # Указываем какую форму использовать для регистрации
-    template_name = "users/register.html"  # Указываем путь к шаблону страницы для регистрации
+    template_name = (
+        "users/register.html"  # Указываем путь к шаблону страницы для регистрации
+    )
     success_url = reverse_lazy(
         "users:register_success"
     )  # Указываем URL, на который будет перенаправлен пользователь после успешной регистрации
@@ -49,9 +52,12 @@ class UserRegisterView(CreateView):
             subject="Подтверждение регистрации на сайте.",
             message=f"Привет, гость! Для активации Вашего аккаунта перейдите по ссылке: {url}",
             from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[user.email,],
+            recipient_list=[
+                user.email,
+            ],
         )
         return super().form_valid(form)
+
 
 def email_verification(request, token):
     """Функция для верификации почты."""
@@ -60,6 +66,7 @@ def email_verification(request, token):
     user.is_active = True
     user.save()
     return redirect(reverse("users:login"))
+
 
 class RegistrationSuccessView(TemplateView):
     template_name = "users/register_success.html"

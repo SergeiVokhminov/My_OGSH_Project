@@ -8,12 +8,21 @@ class User(AbstractUser):
     """Поля для модели пользователя."""
 
     username = None  # отключаем использование username
-    email = models.EmailField(unique=True, verbose_name="Электронная почта")  # почта уникальна
+    email = models.EmailField(
+        unique=True, verbose_name="Электронная почта"
+    )  # почта уникальна
     token = models.CharField(
-        max_length=100, verbose_name="Токен пользователя", unique=True, editable=False, blank=True, null=True
+        max_length=100,
+        verbose_name="Токен пользователя",
+        unique=True,
+        editable=False,
+        blank=True,
+        null=True,
     )  # секретный токен
 
-    USERNAME_FIELD = "email"  # используем почту, как основное поле (обязательное для ввода)
+    USERNAME_FIELD = (
+        "email"  # используем почту, как основное поле (обязательное для ввода)
+    )
     REQUIRED_FIELDS = []  # можно добавить дополнительные поля
 
     #  генерация секретного токена

@@ -33,7 +33,9 @@ class EmployeeUpdateForm(forms.ModelForm):
             "avatar",
         )
         widgets = {
-            'condition': forms.Select(attrs={'class': 'form-select'}),  # Bootstrap стиль
+            "condition": forms.Select(
+                attrs={"class": "form-select"}
+            ),  # Bootstrap стиль
         }
 
     def __init__(self, *args, **kwargs):
@@ -54,7 +56,10 @@ class EmployeeUpdateForm(forms.ModelForm):
             {"class": "form-control", "placeholder": "Введите должность"}
         )
         self.fields["department"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Введите структурное подразделение"}
+            {
+                "class": "form-control",
+                "placeholder": "Введите структурное подразделение",
+            }
         )
         self.fields["phone_number"].widget.attrs.update(
             {

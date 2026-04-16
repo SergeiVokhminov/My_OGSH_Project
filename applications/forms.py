@@ -19,13 +19,7 @@ class ApplicationUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Application
-        fields = (
-            "title",
-            "description",
-            "department",
-            "deadline",
-            "times"
-        )
+        fields = ("title", "description", "department", "deadline", "times")
         widgets = {
             "deadline": forms.SelectDateWidget(),
             "times": forms.TimeInput(attrs={"type": "time"}),
@@ -42,9 +36,5 @@ class ApplicationUpdateForm(forms.ModelForm):
         self.fields["department"].widget.attrs.update(
             {"class": "form-control mb-3", "placeholder": "Выберите Отдел"}
         )
-        self.fields["deadline"].widget.attrs.update(
-            {"class": "form-control mb-3"}
-        )
-        self.fields["times"].widget.attrs.update(
-            {"class": "form-control mb-3"}
-        )
+        self.fields["deadline"].widget.attrs.update({"class": "form-control mb-3"})
+        self.fields["times"].widget.attrs.update({"class": "form-control mb-3"})

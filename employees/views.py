@@ -48,7 +48,9 @@ class EmployeeInfoView(UpdateView):
         counter_employee = EmployeeCounter()
         counter_task = TaskCounter()
 
-        context["employee_count"] = counter_employee.total()  # Считаем общее количество пользователей
+        context["employee_count"] = (
+            counter_employee.total()
+        )  # Считаем общее количество пользователей
         context["employee_at_work_count"] = (
             counter_employee.at_work
         )  # Считаем количество пользователей со статусом "На работе"

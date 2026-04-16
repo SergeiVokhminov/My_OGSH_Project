@@ -21,5 +21,6 @@ def get_first_local_ip_mac():
 
     return "Не удалось определить локальный IP-адрес."
 
+
 if __name__ == "__main__":
     print(get_first_local_ip_mac())
