@@ -155,3 +155,10 @@ LOGIN_URL = "users:login"
 LOGIN_REDIRECT_URL = "home_page:home"
 # Именованный адрес на который перенаправляется пользователь после выхода
 LOGOUT_REDIRECT_URL = "home_page:home"
+
+if __name__ == "__main__":
+    print(f"base_dir - {BASE_DIR}")
+    print()
+    print(f"static_url - {STATIC_URL}")
+    print()
+    print(f"staticfiles_dir - {STATICFILES_DIRS}")
