@@ -8,15 +8,17 @@ from employees.views import (
     EmployeeInfoView,
     EmployeeListView,
     EmployeeUpdateView,
+    EmployeeCreateView,
 )
 
 app_name = EmployeesConfig.name
 
 urlpatterns = [
 
-    path("employee/info/<int:pk>/", EmployeeInfoView.as_view(), name="employee_info"),
-    path("employee/list/", EmployeeListView.as_view(), name="employee_list"),
-    path("employee/detail/<int:pk>/", EmployeeDetailsView.as_view(), name="employee_detail"),
-    path("employee/update/<int:pk>/", EmployeeUpdateView.as_view(), name="employee_update"),
-    path("employee/delete/<int:pk>/", EmployeeDeleteView.as_view(), name="employee_delete"),
+    path("list/", EmployeeListView.as_view(), name="employee_list"),
+    path("create/", EmployeeCreateView.as_view(), name="employee_create"),
+    path("info/<int:pk>/", EmployeeInfoView.as_view(), name="employee_info"),
+    path("detail/<int:pk>/", EmployeeDetailsView.as_view(), name="employee_detail"),
+    path("update/<int:pk>/", EmployeeUpdateView.as_view(), name="employee_update"),
+    path("delete/<int:pk>/", EmployeeDeleteView.as_view(), name="employee_delete"),
 ]
