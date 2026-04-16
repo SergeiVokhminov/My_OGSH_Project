@@ -3,15 +3,7 @@
 {% block title %}Список блогов{% endblock %}
 {% block content %}
 <section class="container text-white">
-<div class="row">
-    <div class="col-4">
-    </div>
-    <div class="col-4">
-        <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'blogs:blog_create' %}" role="button">Добавить блог</a>
-    </div>
-</div>
-<div class="album py-5 bg-body-tertiary">
+<!--<div class="album py-5 bg-body-tertiary">-->
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {% for post in object_list %}
@@ -34,7 +26,15 @@
             {% endfor %}
         </div>
     </div>
-</div>
+<!--</div>-->
+</section>
+
+<section class="text-center container">
+    {% if user.is_superuser %}
+        <a href="{% url 'blogs:blog_create' %}" class="btn btn-secondary my-2">Добавить блог</a>
+    {% endif %}
+        <a href="{% url 'blogs:blog_info' %}" class="btn btn-secondary my-2">Назад</a>
+        <a href="{% url 'home_page:home' %}" class="btn btn-secondary my-2">На главную</a>
 </section>
 
 {% endblock %}

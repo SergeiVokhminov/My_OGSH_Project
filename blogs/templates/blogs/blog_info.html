@@ -2,5 +2,33 @@
 {% load my_tags %}
 {% block title %}Информация о блоге {% endblock %}
 {% block content %}
-
+<section class="py-4 text-center container">
+    <div class="row g-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 text-center container">
+            {% if user.is_superuser %}
+            <div class="col-md-3 text-center container">
+                <div class="card shadow-sm">
+                    <a class="btn btn-primary volumetric-btn btn-lg" href="{% url 'blogs:blog_create' %}" role="button">
+                        Добавить блог
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+            <div class="col-md-3 text-center container">
+                <div class="card shadow-sm">
+                    <a class="btn btn-primary volumetric-btn btn-lg" href="{% url 'blogs:blog_list' %}" role="button">
+                        Блоги
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 text-center container">
+                <div class="card shadow-sm">
+                    <a class="btn btn-primary volumetric-btn btn-lg" href="{% url 'home_page:home' %}" role="button">
+                        На главную
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
