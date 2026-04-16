@@ -97,22 +97,17 @@
             {% if user.is_authenticated %}
             <div class="col">
                 <a class="btn btn-success w-100" style="text-align: center"
-                   href="#" role="button">Мероприятия в здании Главного штаба
-                </a>
-            </div>
-            <div class="col">
-                <a class="btn btn-success w-100" style="text-align: center"
                    href="{% url 'tasks:task_info' %}" role="button">Информация о задачах
                 </a>
             </div>
             <div class="col">
                 <a class="btn btn-success w-100" style="text-align: center"
-                   href="#" role="button">Информация о заявках
+                   href="{% url 'employees:employee_list' %}" role="button">Информация о сотрудника
                 </a>
             </div>
             <div class="col">
                 <a class="btn btn-success w-100" style="text-align: center"
-                   href="#" role="button">Информация о сотрудниках
+                   href="#" role="button">Информация о заявках
                 </a>
             </div>
             <div class="col">
