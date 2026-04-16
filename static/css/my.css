@@ -14,11 +14,11 @@ body.bg-default {
 }
 
 body.bg-registration {
-    background-image: url("/static/images/popa.jpg"); /* Замените на имя вашего изображения */
+    background-image: url("/static/images/иностранные языки.jpg"); /* Замените на имя вашего изображения */
 }
 
 body.bg-login {
-    background-image: url("/static/images/иностранные языки.jpg"); /* Замените на имя вашего изображения */
+    background-image: url("/static/images/login.jpeg"); /* Замените на имя вашего изображения */
 }
 
 <style>
