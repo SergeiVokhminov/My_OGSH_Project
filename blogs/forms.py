@@ -1,6 +1,5 @@
 from django import forms
 from blogs.models import Blog
-from users.models import User
 
 
 class BlogForm(forms.ModelForm):
