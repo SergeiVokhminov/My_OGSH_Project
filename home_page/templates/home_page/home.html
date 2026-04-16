@@ -1,10 +1,10 @@
-{% extends "users/base.html" %}
+{% extends "home_page/base.html" %}
 {% load my_tags %}
 {% block title %}Главная страница{% endblock %}
 {% block content %}
-<section class="text-center container text-white">
+<section class="text-center container text-black">
     {% if user.is_superuser %}
-    <h1 class="fw-light">{{ greeting }}, {{ user.first_name | default:user.email }}!</h1>
+    <h1 class="fw-light">{{ greeting }}</h1>
     <section class="py-3 text-center container text-white">
         <div class="d-flex justify-content-center gap-3">
             <div class="col-sm-2">
@@ -26,19 +26,19 @@
         </div>
     </section>
     {% elif user.is_authenticated %}
-        <h1 class="fw-light">{{ greeting }}, {{ user.first_name | default:user.email }}</h1>
+        <h1 class="fw-light">{{ greeting }}, {{ employee.first_name | default:employee.email }}</h1>
             <hr class="my-4">
         <h1 class="fw-light">Проверь свои задачи и заявки.</h1>
     {% else %}
-        <h1 class="display-6">Сервис Управления Задачами Отдела</h1>
-        <p class="lead">С. У. З. О. - Это отличное место для управления задачами Отдела.
+        <h1 class="display-6">Сервис Управления Отделом</h1>
+        <p class="lead">С. У. О. - Это отличное место для управления Отделом.
             Вы можете организовать постановку, контроль, управления задачами сотрудников и заявками Отдела.
         </p>
     {% endif %}
 </section>
 <hr class="my-4 text-white">
 
-{% if user.is_superuser %}
+{% if employee.is_superuser %}
 <div class="text-center container text-white">
     <h3 class="fw-light">
         Общая информация по Отделу на {{current_date}} года. <!-- Добавить информацию по какому Отделу информация -->
@@ -97,22 +97,22 @@
     </div>
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'tasks:task_info' %}" role="button">Информация о задачах
+           href="#" role="button">Информация о задачах
         </a>
     </div>
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'applications:application_info' %}" role="button">Информация о заявках
+           href="#" role="button">Информация о заявках
         </a>
     </div>
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'users:user_list' %}" role="button">Информация о сотрудниках
+           href="#" role="button">Информация о сотрудниках
         </a>
     </div>
     <div class="col">
         <a class="btn btn-success w-100" style="text-align: center"
-           href="{% url 'users:user_info' user.pk %}" role="button">Личный кабинет
+           href="#" role="button">Личный кабинет
         </a>
     </div>
     {% if user.is_superuser %}
