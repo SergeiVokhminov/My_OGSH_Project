@@ -2,7 +2,8 @@
 {% load my_tags %}
 {% block title %}Создание/Изменение блога{% endblock %}
 {% block content %}
-<div class="container">
+<div class="modal-content rounded-4 shadow">
+<div class="container text-black">
     <h1 class="mb-4">
         {% if blog %}
         Форма изменения блога
@@ -29,9 +30,10 @@
                 Создать
             {% endif %}
         </button>
-        <a class="btn btn-secondary" href="{% url 'blogs:blog_info' %}">Отмена</a>
+        <a class="btn btn-secondary" href="{% url 'blogs:blog_list' %}">Отмена</a>
         <a class="btn btn-secondary" href="{% url 'home_page:home' %}">На главную</a>
         </section>
     </form>
+</div>
 </div>
 {% endblock %}
