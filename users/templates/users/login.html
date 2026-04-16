@@ -1,4 +1,4 @@
-{% extends 'users/base.html' %}
+{% extends 'home_page/base.html' %}
 {% load my_tags %}
 {% block title %}Вход на сайт{% endblock %}
 {% block content %}
@@ -16,7 +16,7 @@
                         <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">
                             Вход
                         </button>
-                        <a class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" href="{% url 'users:home' %}">
+                        <a class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" href="{% url 'home_page:home' %}">
                             Отмена
                         </a>
                     </div>
