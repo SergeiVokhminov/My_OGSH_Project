@@ -1,6 +1,7 @@
 from django.db import models
 
 from config import settings
+from employees.models import Employee
 from tasks.constants import STATUS_CHOICES
 from users.models import User
 
@@ -26,7 +27,7 @@ class Task(models.Model):
         blank=True,
     )
     employee = models.ForeignKey(
-        User,
+        Employee,
         on_delete=models.CASCADE,
         related_name="tasks",
         verbose_name="Исполнители",
