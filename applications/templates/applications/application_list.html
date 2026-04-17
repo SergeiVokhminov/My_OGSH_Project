@@ -23,7 +23,7 @@
                 <td>{{ application.department }}</td>
                 <td>{{ application.deadline }}</td>
                 <td>{{ application.times }}</td>
-                <td><a class="link" href="{% url 'applications:applications_detail' application.pk %}">Подробнее</a></td>
+                <td><a class="link" href="{% url 'applications:application_detail' application.pk %}">Подробнее</a></td>
             </tr>
             {% empty %}
             <tr>
