@@ -20,7 +20,7 @@ class EmployeeCreateView(CreateView):
     model = Employee
     form_class = EmployeeUpdateForm
     template_name = "employees/employee_form.html"
-    success_url = reverse_lazy("employees:employee_list.html")
+    success_url = reverse_lazy("employees:employee_list")
 
     def form_valid(self, form):
         employee = form.save()
@@ -91,22 +91,22 @@ class EmployeeListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # counter = UserCounter()
-        #
-        # # Используем свойства или методы класса UserCounter
-        # context["user_count"] = counter.total()  # Считаем количество пользователей
-        # context["user_at_work_count"] = (
-        #     counter.at_work
-        # )  # Считаем количество пользователей "На работе"
-        # context["user_on_vacation_count"] = (
-        #     counter.on_vacation
-        # )  # Считаем количество пользователей "В отпуске"
-        # context["user_on_sick_leave_count"] = (
-        #     counter.on_sick_leave
-        # )  # Считаем количество пользователей "На больничном"
-        # context["user_truancy_count"] = (
-        #     counter.truancy
-        # )  # Считаем количество пользователей "Прогул"
+        counter = EmployeeCounter()
+
+        # Используем свойства или методы класса UserCounter
+        context["employee_count"] = counter.total()  # Считаем количество пользователей
+        context["employee_at_work_count"] = (
+            counter.at_work
+        )  # Считаем количество пользователей "На работе"
+        context["employee_on_vacation_count"] = (
+            counter.on_vacation
+        )  # Считаем количество пользователей "В отпуске"
+        context["employee_on_sick_leave_count"] = (
+            counter.on_sick_leave
+        )  # Считаем количество пользователей "На больничном"
+        context["employee_truancy_count"] = (
+            counter.truancy
+        )  # Считаем количество пользователей "Прогул"
 
         return context
 
