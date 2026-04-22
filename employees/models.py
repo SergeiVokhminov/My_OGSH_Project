@@ -62,7 +62,7 @@ class Employee(models.Model):
     token = models.CharField(
         max_length=100, verbose_name="Токен пользователя", unique=True, editable=False
     )
-    is_active = models.BooleanField(default=False, verbose_name="Признак активности")
+    is_active = models.BooleanField(default=True, verbose_name="Признак активности")
 
     def save(self, *args, **kwargs):
         if not self.token:
