@@ -41,6 +41,6 @@ class User(AbstractUser):
     class Meta:
         """Мета-информация модели User."""
 
-        verbose_name = "Пользователь"
-        verbose_name_plural = "Пользователи"
+        verbose_name = "Зарегистрированный пользователь"
+        verbose_name_plural = "Зарегистрированные пользователи"
         ordering = ["id"]

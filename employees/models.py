@@ -77,6 +77,6 @@ class Employee(models.Model):
     class Meta:
         """Мета-информация модели User."""
 
-        verbose_name = "Пользователь"
-        verbose_name_plural = "Пользователи"
+        verbose_name = "Профиль пользователя"
+        verbose_name_plural = "Профили пользователей"
         ordering = ["id"]
