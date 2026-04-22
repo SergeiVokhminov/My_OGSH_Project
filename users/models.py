@@ -7,7 +7,7 @@ from django.db import models
 class User(AbstractUser):
     """Поля для модели пользователя."""
 
-    username = None  # отключаем использование username
+    username = None  # отключаем использование поля username
     email = models.EmailField(
         unique=True, verbose_name="Электронная почта"
     )  # почта уникальна
