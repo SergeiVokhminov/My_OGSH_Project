@@ -3,12 +3,12 @@
 {% block title %}Главная страница{% endblock %}
 {% block content %}
 <section class="text-center container text-black">
-    {% if user.is_superuser %}
     <div class="modal-content rounded-4 shadow">
+        {% if user.is_superuser %}
         <h1 class="fw-light">{{ greeting }}, {{ user.first_name | default:user.email }}!</h1>
         <section class="py-3 text-center container text-white">
             <div class="d-flex justify-content-center gap-3">
-                <div class="col-sm-2">
+                <div class="col-sm-1">
                     <label for="date_application" class="form-label text-black">Дата:</label>
                         {% now "d.m.Y" as current_date %}
                     <div class="form-control" id="date_application" style="text-align: center;">{{ current_date }}</div>
@@ -16,7 +16,7 @@
                         Valid first name is required.
                     </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-1">
                     <label for="time_application" class="form-label text-black">Время:</label>
                         {% now "H:i" as current_time %}
                     <div class="form-control" id="time_application" style="text-align: center;">{{ current_time }}</div>
@@ -25,8 +25,7 @@
                     </div>
                 </div>
             </div>
-        </section>
-        {% elif user.is_authenticated %}
+<!--        {% elif user.is_authenticated %}-->
             <h1 class="fw-light">{{ greeting }}, {{ employee.first_name | default:employee.email }}</h1>
             <hr class="my-4">
             <h1 class="fw-light">Проверь свои задачи и заявки.</h1>
@@ -35,6 +34,7 @@
             <p class="lead">С. У. О. - Это отличное место для управления Отделом.
                 Вы можете организовать постановку, контроль, управления задачами сотрудников и заявками Отдела.
             </p>
+        </section>
         {% endif %}
     </div>
 </section>
