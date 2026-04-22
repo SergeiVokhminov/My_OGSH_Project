@@ -3,7 +3,6 @@ from django.db import models
 from config import settings
 from employees.models import Employee
 from tasks.constants import STATUS_CHOICES
-from users.models import User
 
 
 class Task(models.Model):
@@ -29,8 +28,8 @@ class Task(models.Model):
     employee = models.ForeignKey(
         Employee,
         on_delete=models.CASCADE,
-        related_name="tasks",
         verbose_name="Исполнители",
+        related_name="tasks",
         default="Не выбран",
         null=True,
         blank=True,

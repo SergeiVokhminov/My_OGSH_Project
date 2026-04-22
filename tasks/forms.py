@@ -27,7 +27,6 @@ class TaskUpdateForm(forms.ModelForm):
             "employee",
             "status",
             "deadline",
-            "is_active",
         )
         widgets = {
             "deadline": forms.SelectDateWidget(),
@@ -52,6 +51,3 @@ class TaskUpdateForm(forms.ModelForm):
             {"class": "form-control", "placeholder": "Статус задачи"}
         )
         self.fields["deadline"].widget.attrs.update({"class": "form-control mb-3"})
-        self.fields["is_active"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Статус работника"}
-        )
