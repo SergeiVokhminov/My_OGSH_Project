@@ -15,7 +15,7 @@ class UserLoginView(LoginView):
     """Контроллер для входа на сайт."""
 
     model = User  # Указываем какую модель использовать
-    form_class = UserAuthForm  # Указываем какую форму использовать для регистрации
+    form_class = UserAuthForm  # Указываем какую форму использовать для входа
     template_name = "users/login.html"  # Указываем путь к шаблону страницы для входа
     success_url = reverse_lazy(
         "home_page:home"
@@ -66,4 +66,6 @@ def email_verification(request, token):
 
 
 class RegistrationSuccessView(TemplateView):
+    """Контроллер для представления страницы после регистрации."""
+
     template_name = "users/register_success.html"
