@@ -12,7 +12,7 @@ class User(AbstractUser):
         unique=True, verbose_name="Электронная почта"
     )  # почта уникальна
     token = models.CharField(
-        max_length=100,
+        max_length=64,
         verbose_name="Токен пользователя",
         unique=True,
         editable=False,
