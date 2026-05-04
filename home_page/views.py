@@ -30,3 +30,11 @@ class HomeView(TemplateView):
         #     counter_application.total # Считаем общее количество заявок
         # )
         return context
+
+    def get_template_names(self):
+        if self.request.user.is_superuser:
+            return ["home_page/home_admin.html"]
+        elif self.request.user.is_authenticated:
+            return ["home_page/home_user.html"]
+        else:
+            return ["home_page/home.html"]
