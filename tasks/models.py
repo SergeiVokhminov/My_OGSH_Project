@@ -27,7 +27,7 @@ class Task(models.Model):
     )
     employee = models.ForeignKey(
         Employee,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         verbose_name="Исполнители",
         related_name="tasks",
         default="Не выбран",
@@ -57,6 +57,7 @@ class Task(models.Model):
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
+        related_name='created_tasks',
         verbose_name="Владелец задачи",
         null=True,
         blank=True,
