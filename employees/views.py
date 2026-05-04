@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -15,7 +16,7 @@ from tasks.utils import TaskCounter
 
 
 class EmployeeCreateView(CreateView):
-    """Контроллер добавления пользователя на сайт."""
+    """Контроллер добавления сотрудников на сайт."""
 
     model = Employee
     form_class = EmployeeUpdateForm
@@ -23,20 +24,24 @@ class EmployeeCreateView(CreateView):
     success_url = reverse_lazy("employees:employee_list")
 
     def form_valid(self, form):
-        employee = form.save()
+        employee = form.save(commit=False)
+        plain_password = self.request.POST.get('password')
+        # Генерируем хеш пароля
+        employee.password = make_password(plain_password)
+        employee.email = employee.get_email()
         user = self.request.user
         employee.owner = user
         employee.save()
         return super().form_valid(form)
 
     def test_func(self):
-        """Проверка, является ли пользователь суперпользователем."""
+        """Проверка, является ли сотрудник суперпользователем."""
 
         return self.request.user.is_superuser
 
 
 class EmployeeInfoView(UpdateView):
-    """Контроллер просмотра профиля пользователя."""
+    """Контроллер просмотра профиля сотрудника."""
 
     model = Employee
     form_class = EmployeeForm
@@ -50,19 +55,19 @@ class EmployeeInfoView(UpdateView):
 
         context["employee_count"] = (
             counter_employee.total()
-        )  # Считаем общее количество пользователей
+        )  # Считаем общее количество сотрудников
         context["employee_at_work_count"] = (
             counter_employee.at_work
-        )  # Считаем количество пользователей со статусом "На работе"
+        )  # Считаем количество сотрудников со статусом "На работе"
         context["employee_on_vacation_count"] = (
             counter_employee.on_vacation
-        )  # Считаем количество пользователей со статусом "В отпуске"
+        )  # Считаем количество сотрудников со статусом "В отпуске"
         context["employee_on_sick_leave_count"] = (
             counter_employee.on_sick_leave
-        )  # Считаем количество пользователей со статусом "На больничном"
+        )  # Считаем количество сотрудников со статусом "На больничном"
         context["employee_truancy_count"] = (
             counter_employee.truancy
-        )  # Считаем количество пользователей со статусом "Прогул"
+        )  # Считаем количество сотрудников со статусом "Прогул"
 
         context["task_count"] = (
             counter_task.total()
@@ -84,7 +89,7 @@ class EmployeeInfoView(UpdateView):
 
 
 class EmployeeListView(ListView):
-    """Контроллер отображения списка пользователей сервиса."""
+    """Контроллер отображения списка сотрудников сервиса."""
 
     model = Employee
     template_name = "employees/employee_list.html"
@@ -93,26 +98,26 @@ class EmployeeListView(ListView):
         context = super().get_context_data(**kwargs)
         counter = EmployeeCounter()
 
-        # Используем свойства или методы класса UserCounter
-        context["employee_count"] = counter.total()  # Считаем количество пользователей
+        # Используем свойства или методы класса EmployeeCounter
+        context["employee_count"] = counter.total()  # Считаем количество сотрудников
         context["employee_at_work_count"] = (
             counter.at_work
-        )  # Считаем количество пользователей "На работе"
+        )  # Считаем количество сотрудников "На работе"
         context["employee_on_vacation_count"] = (
             counter.on_vacation
-        )  # Считаем количество пользователей "В отпуске"
+        )  # Считаем количество сотрудников "В отпуске"
         context["employee_on_sick_leave_count"] = (
             counter.on_sick_leave
-        )  # Считаем количество пользователей "На больничном"
+        )  # Считаем количество сотрудников "На больничном"
         context["employee_truancy_count"] = (
             counter.truancy
-        )  # Считаем количество пользователей "Прогул"
+        )  # Считаем количество сотрудников "Прогул"
 
         return context
 
 
 class EmployeeDetailsView(DetailView):
-    """Контроллер отображения профиля пользователя."""
+    """Контроллер отображения профиля сотрудников."""
 
     model = Employee
     form_class = EmployeeForm
@@ -120,7 +125,7 @@ class EmployeeDetailsView(DetailView):
 
 
 class EmployeeUpdateView(UpdateView):
-    """Контроллер обновления профиля пользователя."""
+    """Контроллер обновления профиля сотрудников."""
 
     model = Employee
     form_class = EmployeeUpdateForm
@@ -129,7 +134,7 @@ class EmployeeUpdateView(UpdateView):
 
 
 class EmployeeDeleteView(DeleteView):
-    """Контроллер удаления профиля пользователя."""
+    """Контроллер удаления профиля сотрудников."""
 
     model = Employee
     template_name = "employees/employee_confirm_delete.html"
@@ -138,7 +143,7 @@ class EmployeeDeleteView(DeleteView):
     def test_func(self):
         return (
             self.request.user.is_staff
-        )  # Только администраторы могут удалять пользователей
+        )  # Только суперпользователь может удалять пользователей
 
     def get_object(self, queryset=None):
         return get_object_or_404(Employee, pk=self.kwargs["pk"])
