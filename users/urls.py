@@ -6,7 +6,7 @@ from users.views import (
     RegistrationSuccessView,
     UserLoginView,
     UserRegisterView,
-    email_verification,
+    email_verification, UserForgotPasswordView, UserPasswordResetConfirmView,
 )
 
 app_name = UsersConfig.name
@@ -21,4 +21,6 @@ urlpatterns = [
     path(
         "register-success", RegistrationSuccessView.as_view(), name="register_success"
     ),
+    path("password_reset/", UserForgotPasswordView.as_view(), name="password_reset"),
+    path("set_new_password/<uidb64>/<token>/", UserPasswordResetConfirmView.as_view(), name="password_reset_confirm"),
 ]
