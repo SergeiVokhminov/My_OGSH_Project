@@ -52,7 +52,7 @@
 
 <section class="text-center container">
     <a href="{% url 'employees:employee_update' employee.pk %}" class="btn btn-primary my-2">Редактировать профиль</a>
-    <a href="#" class="btn btn-primary my-2">Отмена</a>
+    <a href="{% url 'employees:employee_list' %}" class="btn btn-primary my-2">Отмена</a>
     <a href="{% url 'home_page:home' %}" class="btn btn-secondary my-2">На главную</a>
 </section>
 {% endblock %}

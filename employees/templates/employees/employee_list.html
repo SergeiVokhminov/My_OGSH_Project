@@ -34,8 +34,42 @@
     </div>
 </div>
 
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-4 text-center">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Электронная почта</th>
+                <th scope="col">Статус сотрудника</th>
+                <th scope="col">Детали</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for employee in object_list %}
+            <tr>
+                <th scope="row">{{ employee.id }}</th>
+                <td>{{ employee.first_name }}</td>
+                <td>{{ employee.last_name }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.get_condition_display }}</td>
+                <td><a class="link" href="{% url 'employees:employee_detail' employee.pk %}">Подробнее</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">Нет сотрудников для отображения.</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <section class="text-center container">
     <a href="{% url 'employees:employee_create' %}" class="btn btn-secondary my-2">Добавить сотрудника</a>
+    <a href="{% url 'employees:employee_info' %}" class="btn btn-secondary my-2">Информация о сотрудниках</a>
     <a href="{% url 'home_page:home' %}" class="btn btn-secondary my-2">На главную</a>
 </section>
 
