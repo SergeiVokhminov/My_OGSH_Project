@@ -1,6 +1,7 @@
 import uuid
 
 from django.conf import settings
+from django.contrib.auth.handlers.modwsgi import check_password
 from django.contrib.auth.hashers import make_password
 from django.db import models
 from transliterate import translit
@@ -11,13 +12,6 @@ from employees.constants import CONDITION_CHOICES
 class Employee(models.Model):
     """Поля для модели профиля пользователя."""
 
-    condition = models.CharField(
-        choices=CONDITION_CHOICES,
-        verbose_name="Статус сотрудника",
-        default="work",
-        null=True,
-        blank=True,
-    )
     email = models.EmailField(unique=True, verbose_name="Электронная почта")
     first_name = models.CharField(
         max_length=50, verbose_name="Имя", blank=True, null=True
@@ -56,8 +50,14 @@ class Employee(models.Model):
     token = models.CharField(
         max_length=100, verbose_name="Токен пользователя", unique=True, editable=False
     )
-    is_active = models.BooleanField(default=True, verbose_name="Признак активности")
-    password = models.CharField("Пароль", max_length=128)  # хранится в зашифрованном виде
+    password = models.CharField("Пароль", max_length=128, blank=True, null=True)  # хранится в зашифрованном виде
+    condition = models.CharField(
+        choices=CONDITION_CHOICES,
+        verbose_name="Статус сотрудника",
+        default="work",
+        null=True,
+        blank=True,
+    )
 
     def save(self, *args, **kwargs):
         """Переопределение метода сохранения для генерации токена при создании."""
@@ -65,18 +65,28 @@ class Employee(models.Model):
         if not self.token:
             self.token = uuid.uuid4().hex
 
-        # Если пароль не зашифрован, шифруем его
-        if self.pk is None:
-            self.password = make_password(self.password)
+            # Проверяем, если пароль еще не хеширован (не выглядит как хэш), хешируем его.
+            if not self.password.startswith('pbkdf2_'):
+                self.password = make_password(self.password)
 
-        super().save(*args, **kwargs)
+            super().save(*args, **kwargs)
 
     def get_email(self):
         """ Генерирует email исходя из фамилии и шаблона. """
 
-        # Транслитерируем фамилию с русского на английский
+        # Переводим фамилию с русского на английский.
         last_name_transliterated = translit(self.last_name, 'ru', reversed=True).lower()
         return f"{last_name_transliterated}@test_pr.ru"
+
+    def set_password(self, raw_password):
+        """Метод для установки пароля, хеширует его."""
+
+        self.password = make_password(raw_password)
+
+    def check_password(self, raw_password):
+        """Метод проверки пароля."""
+
+        return check_password(raw_password, self.password)
 
     def __str__(self):
         """Метод для строкового представления объекта User."""
