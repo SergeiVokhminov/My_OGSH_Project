@@ -6,7 +6,7 @@ from django.views.generic import (
     DeleteView,
     DetailView,
     ListView,
-    UpdateView,
+    UpdateView, TemplateView,
 )
 
 from employees.forms import EmployeeForm, EmployeeUpdateForm
@@ -40,52 +40,13 @@ class EmployeeCreateView(CreateView):
         return self.request.user.is_superuser
 
 
-class EmployeeInfoView(UpdateView):
+class EmployeeInfoView(TemplateView):
     """Контроллер просмотра профиля сотрудника."""
 
     model = Employee
     form_class = EmployeeForm
     template_name = "employees/employee_info.html"
     success_url = reverse_lazy("home_page:home")
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        counter_employee = EmployeeCounter()
-        counter_task = TaskCounter()
-
-        context["employee_count"] = (
-            counter_employee.total()
-        )  # Считаем общее количество сотрудников
-        context["employee_at_work_count"] = (
-            counter_employee.at_work
-        )  # Считаем количество сотрудников со статусом "На работе"
-        context["employee_on_vacation_count"] = (
-            counter_employee.on_vacation
-        )  # Считаем количество сотрудников со статусом "В отпуске"
-        context["employee_on_sick_leave_count"] = (
-            counter_employee.on_sick_leave
-        )  # Считаем количество сотрудников со статусом "На больничном"
-        context["employee_truancy_count"] = (
-            counter_employee.truancy
-        )  # Считаем количество сотрудников со статусом "Прогул"
-
-        context["task_count"] = (
-            counter_task.total()
-        )  # Считаем общее количество созданных задач
-        context["start_task_count"] = (
-            counter_task.start_task
-        )  # Считаем количество задач со статусом "К исполнению"
-        context["free_task_count"] = (
-            counter_task.free_task
-        )  # Считаем количество задач со статусом "Свободна"
-        context["done_task_count"] = (
-            counter_task.done_task
-        )  # Считаем количество задач со статусом "Завершена"
-        context["closed_task_count"] = (
-            counter_task.closed_task
-        )  # Считаем количество задач со статусом "Отменена"
-
-        return context
 
 
 class EmployeeListView(ListView):
