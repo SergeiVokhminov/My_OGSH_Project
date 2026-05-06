@@ -11,17 +11,15 @@ class EmployeeForm(forms.ModelForm):
         model = Employee
         fields = "__all__"
 
-    def __init__(self, *args, **kwargs):
-        super(EmployeeForm, self).__init__(*args, **kwargs)
-
 
 class EmployeeUpdateForm(forms.ModelForm):
     """Форма обновления данных пользователя."""
 
+    password = forms.CharField(widget=forms.PasswordInput, required=True)
+
     class Meta:
         model = Employee
         fields = (
-            "email",
             "first_name",
             "last_name",
             "patronymic",
@@ -31,6 +29,7 @@ class EmployeeUpdateForm(forms.ModelForm):
             "condition",
             "address",
             "avatar",
+            "password",
         )
         widgets = {
             "condition": forms.Select(
@@ -40,9 +39,6 @@ class EmployeeUpdateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(EmployeeUpdateForm, self).__init__(*args, **kwargs)
-        self.fields["email"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Введите адрес электронной почты"}
-        )
         self.fields["first_name"].widget.attrs.update(
             {"class": "form-control", "placeholder": "Введите имя"}
         )
@@ -75,6 +71,9 @@ class EmployeeUpdateForm(forms.ModelForm):
         )
         self.fields["avatar"].widget.attrs.update(
             {"class": "form-control", "placeholder": "Загрузите фотографию"}
+        )
+        self.fields["password"].widget.attrs.update(
+            {"class": "form-control", "placeholder": "Введите пароль"}
         )
 
     def clean_email(self):
